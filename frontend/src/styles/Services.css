@@ -1,0 +1,128 @@
+.services-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-color);
+    background: linear-gradient(180deg, var(--bg-top) 0%, #D0F4F9 50%, var(--bg-bottom) 100%);
+    overflow-x: hidden;
+}
+
+.services-hero {
+    padding: 150px 20px 80px;
+    /* Space for fixed navbar */
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.services-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+.services-hero h1 span {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--cyan-primary);
+    font-weight: 700;
+}
+
+.services-hero p {
+    font-size: 1.2rem;
+    color: #4A5568;
+    line-height: 1.6;
+}
+
+.content-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px 100px;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--cyan-secondary);
+    margin-bottom: 2.5rem;
+    text-align: center;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--cyan-primary);
+    border-radius: 2px;
+    margin: 15px auto 0;
+}
+
+/* Glassmorphism Grid */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 5rem;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0, 166, 199, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.glass-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 15px 40px rgba(0, 182, 211, 0.15);
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+.glass-card h3 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-color);
+    line-height: 1.4;
+}
+
+/* Specific styling for the tech stack to look like tags */
+.tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.tech-tag {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--cyan-secondary);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    transition: all 0.2s ease;
+}
+
+.tech-tag:hover {
+    background: linear-gradient(135deg, #00C6E0, #008AA4);
+    color: white;
+    transform: scale(1.05);
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(0, 182, 211, 0.3);
+}
