@@ -1,0 +1,130 @@
+.cpu-container {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .cpu-container {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+}
+
+.cpu-svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+/* Base paths */
+.base-path {
+    stroke: #ffffff;
+    stroke-width: 0.5;
+    fill: none;
+    opacity: 0.4;
+}
+
+/* The Moving Rays */
+.ray {
+    fill: none;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-dasharray: 20 80;
+    stroke-dashoffset: 100;
+    animation: ray-move 3s linear infinite;
+    filter: drop-shadow(0 0 5px currentColor);
+}
+
+@keyframes ray-move {
+    0% {
+        stroke-dashoffset: 100;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+    }
+}
+
+/* Dots at the start of paths */
+.start-dot {
+    fill: #bdb9b9;
+    stroke: #bdb9b9;
+    stroke-width: 0.5;
+    opacity: 1;
+}
+
+/* CPU Core Styling */
+.cpu-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 4.2px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    animation: cpu-pulse 2s ease-in-out infinite;
+}
+
+@keyframes cpu-pulse {
+
+    0%,
+    100% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Ray Colors and Staggered Timing */
+.r1 {
+    stroke: url(#ray-grad-1);
+    animation-delay: 0s;
+}
+
+.r2 {
+    stroke: url(#ray-grad-2);
+    animation-delay: 0.5s;
+}
+
+.r3 {
+    stroke: url(#ray-grad-3);
+    animation-delay: 1.2s;
+}
+
+.r4 {
+    stroke: url(#ray-grad-4);
+    animation-delay: 1.8s;
+}
+
+.r5 {
+    stroke: url(#ray-grad-5);
+    animation-delay: 2.2s;
+}
+
+.r6 {
+    stroke: url(#ray-grad-6);
+    animation-delay: 0.3s;
+}
+
+.r7 {
+    stroke: url(#ray-grad-7);
+    animation-delay: 0.9s;
+}
+
+.r8 {
+    stroke: url(#ray-grad-8);
+    animation-delay: 1.5s;
+}

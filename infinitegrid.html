@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Infinite Grid - Recreated</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --grid-color: rgba(0, 0, 0, 0.1);
+            --grid-active-color: rgba(0, 0, 0, 0.2);
+            --primary-btn: #18181b;
+            --secondary-btn: #f4f4f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* The Container */
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: default;
+        }
+
+        /* Static Background Grid (Faint) */
+        .grid-layer {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: scroll 2s linear infinite;
+            z-index: 0;
+            opacity: 0.15;
+        }
+
+        /* Active Reveal Grid (Darker, follows mouse) */
+        .grid-reveal {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(to right, var(--grid-active-color) 1.5px, transparent 1.5px),
+                linear-gradient(to bottom, var(--grid-active-color) 1.5px, transparent 1.5px);
+            background-size: 40px 40px;
+            animation: scroll 2s linear infinite;
+            z-index: 1;
+            opacity: 0.35;
+            /* Masking logic */
+            -webkit-mask-image: radial-gradient(300px circle at var(--x, 0) var(--y, 0), black, transparent);
+            mask-image: radial-gradient(300px circle at var(--x, 0) var(--y, 0), black, transparent);
+        }
+
+        /* Background Glows */
+        .glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .glow-1 {
+            width: 40vw;
+            height: 40vw;
+            background: rgba(252, 184, 82, 0.3);
+            top: -10%;
+            right: -10%;
+        }
+
+        .glow-2 {
+            width: 30vw;
+            height: 30vw;
+            background: rgba(236, 101, 10, 0.2);
+            bottom: -10%;
+            left: -10%;
+        }
+
+        @keyframes scroll {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 40px 40px;
+            }
+        }
+
+        /* Content Styles */
+        .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            pointer-events: none;
+            /* Allows mouse to pass through to grid */
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 800;
+            color: #111;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            pointer-events: auto;
+            /* Re-enable for clicks */
+        }
+
+        button {
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.1s ease, background 0.2s ease;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .btn-primary {
+            background: var(--primary-btn);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--secondary-btn);
+            color: #111;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container" id="grid-container">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+
+        <div class="grid-layer"></div>
+        <div class="grid-reveal" id="reveal-layer"></div>
+
+        <div class="content">
+            <h1>The Infinite Grid</h1>
+            <p>
+                Move your cursor to reveal the active grid layer.<br>
+                The pattern scrolls infinitely in the background.
+            </p>
+            <div class="buttons">
+                <button class="btn-primary" onclick="increment()">Interact (<span id="count">0</span>)</button>
+                <button class="btn-secondary">Learn More</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('grid-container');
+        const countEl = document.getElementById('count');
+        let count = 0;
+
+        // Follow mouse movement
+        container.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // Set CSS variables for the radial mask
+            container.style.setProperty('--x', `${x}px`);
+            container.style.setProperty('--y', `${y}px`);
+        });
+
+        function increment() {
+            count++;
+            countEl.innerText = count;
+        }
+    </script>
+</body>
+
+</html>

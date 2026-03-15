@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Grid - Smooth Edition</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --grid-line-color: rgba(0, 0, 0, 0.15);
+            --grid-size: 60px;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--bg-color);
+        }
+
+        .viewport {
+            position: relative;
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .grid-perspective {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            /* Increased perspective slightly for smoother line transitions */
+            perspective: 300px; 
+            overflow: hidden;
+        }
+
+        .grid-plane {
+            position: absolute;
+            inset: 0;
+            transform: rotateX(55deg);
+            transform-origin: center center;
+            /* Critical for preventing flickering at the horizon */
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .grid-animate {
+            position: absolute;
+            height: 400vh; /* Extra height to ensure no gaps */
+            width: 600vw;
+            inset: 0;
+            margin-left: -250vw;
+            margin-top: -100vh;
+
+            background-image: 
+                linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px), 
+                linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
+            background-size: var(--grid-size) var(--grid-size);
+
+            /* Animation uses translate3d for GPU acceleration */
+            animation: grid-travel 4s linear infinite;
+            will-change: transform;
+            
+            /* The real secret: Mask the top edge so lines don't "pop" into existence */
+            mask-image: linear-gradient(to bottom, transparent 30%, black 60%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 30%, black 60%);
+        }
+
+        @keyframes grid-travel {
+            from {
+                transform: translate3d(0, 0, 0);
+            }
+            to {
+                /* Must match exactly one grid-size unit */
+                transform: translate3d(0, var(--grid-size), 0);
+            }
+        }
+
+        /* Adds a soft white vignette to blend with the background */
+        .horizon-fade {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, transparent 20%, var(--bg-color) 80%);
+            pointer-events: none;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="viewport">
+        <div class="grid-perspective">
+            <div class="grid-plane">
+                <div class="grid-animate"></div>
+            </div>
+        </div>
+        <div class="horizon-fade"></div>
+    </div>
+
+</body>
+</html>

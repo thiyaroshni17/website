@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shine Border Effect</title>
+    <style>
+        :root {
+            --bg-color: #030712;
+            --card-bg: #030712;
+            --border-radius: 12px;
+            --border-width: 2px;
+            --duration: 12s;
+            /* Colors used in the shine gradient */
+            --shine-color-1: #ec650a;
+            --shine-color-2: #fcb852;
+            --shine-color-3: #ec650a;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* The Main Container */
+        .shine-border-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 400px;
+            min-height: 250px;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            background-color: var(--card-bg);
+            color: white;
+            overflow: hidden;
+        }
+
+        /* The Animated Border (Pseudo-element) */
+        .shine-border-container::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            padding: var(--border-width); /* Controls border thickness */
+            border-radius: var(--border-radius);
+            
+            /* The Gradient "Light" */
+            background-image: radial-gradient(
+                circle at center,
+                transparent 0%,
+                var(--shine-color-1) 20%,
+                var(--shine-color-2) 40%,
+                var(--shine-color-3) 60%,
+                transparent 80%
+            );
+            background-size: 300% 300%;
+            
+            /* The Masking Magic: 
+               This keeps the gradient only on the border and hides it behind the content */
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            
+            animation: shine-animation var(--duration) infinite linear;
+            pointer-events: none;
+        }
+
+        /* Smooth shine movement */
+        @keyframes shine-animation {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        /* Content Styling */
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 0;
+            background: linear-gradient(to bottom, #ffffff, #4b5563);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="shine-border-container">
+        <h1>Shine Border</h1>
+    </div>
+
+</body>
+</html>

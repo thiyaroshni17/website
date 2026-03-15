@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Professional orange gradient for depth */
+    background: radial-gradient(circle, #ff9d00 0%, #e67e22 100%);
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .ui-container {
+    position: relative;
+    text-align: center;
+  }
+
+  .biometric-img {
+    width: 500px; /* Adjust based on your needs */
+    height: auto;
+    /* Adds a subtle glow that matches the UI color */
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.2));
+    transition: transform 0.3s ease;
+  }
+
+  .biometric-img:hover {
+    transform: translateY(-10px);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    border-radius: 20px;
+    color: white;
+    margin-top: -50px;
+  }
+</style>
+</head>
+<body>
+
+<div class="ui-container">
+  <img src="biometric.png" alt="Biometric Device" class="biometric-img">
+  
+  <div class="glass-card">
+    <h1>Smart Attendance System</h1>
+    <p>Secure. Fast. Seamless.</p>
+  </div>
+</div>
+
+</body>
+</html>

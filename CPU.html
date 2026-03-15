@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPU Architecture - Gradient Rays</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --line-color: #27272a;
+            --cpu-bg: #18181b;
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 40px;
+        }
+
+        /* The static background lines */
+        .base-path {
+            stroke: var(--line-color);
+            stroke-width: 0.5;
+            fill: none;
+            opacity: 0.5;
+        }
+
+        /* The Moving Ray */
+        .ray {
+            fill: none;
+            stroke-width: 0.8;
+            stroke-linecap: round;
+            /* Dash of 20 units, gap of 80 units (total 100) */
+            stroke-dasharray: 20 80; 
+            stroke-dashoffset: 100;
+            animation: ray-move 3s linear infinite;
+        }
+
+        @keyframes ray-move {
+            0% { stroke-dashoffset: 100; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { stroke-dashoffset: 0; opacity: 0; }
+        }
+
+        /* Dot at the start of each path */
+        .start-dot {
+            fill: #000;
+            stroke: var(--line-color);
+            stroke-width: 0.5;
+        }
+
+        /* CPU Text Shimmer */
+        .cpu-text {
+            fill: #fff;
+            font-family: sans-serif;
+            font-size: 7px;
+            font-weight: 600;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Staggered animation delays for the rays */
+        .r1 { stroke: #00E8ED; animation-delay: 0s; }
+        .r2 { stroke: #FFD800; animation-delay: 0.5s; }
+        .r3 { stroke: #FF008B; animation-delay: 1.2s; }
+        .r4 { stroke: #ffffff; animation-delay: 1.8s; }
+        .r5 { stroke: #22c55e; animation-delay: 2.2s; }
+        .r6 { stroke: #f97316; animation-delay: 0.3s; }
+        .r7 { stroke: #06b6d4; animation-delay: 0.9s; }
+        .r8 { stroke: #f43f5e; animation-delay: 1.5s; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <svg viewBox="0 0 200 100">
+        <defs>
+            <filter id="ray-glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="1" result="blur" />
+                <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+
+            <path id="path1" d="M 10 20 h 79.5 q 5 0 5 5 v 20" />
+            <path id="path2" d="M 180 10 h -69.7 q -5 0 -5 5 v 30" />
+            <path id="path3" d="M 130 20 v 21.8 q 0 5 -5 5 h -10" />
+            <path id="path4" d="M 170 80 v -21.8 q 0 -5 -5 -5 h -50" />
+            <path id="path5" d="M 135 65 h 15 q 5 0 5 5 v 10 q 0 5 -5 5 h -39.8 q -5 0 -5 -5 v -20" />
+            <path id="path6" d="M 94.8 95 v -36" />
+            <path id="path7" d="M 88 88 v -15 q 0 -5 -5 -5 h -10 q -5 0 -5 -5 v -5 q 0 -5 5 -5 h 14" />
+            <path id="path8" d="M 30 30 h 25 q 5 0 5 5 v 6.5 q 0 5 5 5 h 20" />
+        </defs>
+
+        <use href="#path1" class="base-path" />
+        <use href="#path2" class="base-path" />
+        <use href="#path3" class="base-path" />
+        <use href="#path4" class="base-path" />
+        <use href="#path5" class="base-path" />
+        <use href="#path6" class="base-path" />
+        <use href="#path7" class="base-path" />
+        <use href="#path8" class="base-path" />
+
+        <circle class="start-dot" cx="10" cy="20" r="1.5" />
+        <circle class="start-dot" cx="180" cy="10" r="1.5" />
+        <circle class="start-dot" cx="130" cy="20" r="1.5" />
+        <circle class="start-dot" cx="170" cy="80" r="1.5" />
+        <circle class="start-dot" cx="135" cy="65" r="1.5" />
+        <circle class="start-dot" cx="94.8" cy="95" r="1.5" />
+        <circle class="start-dot" cx="88" cy="88" r="1.5" />
+        <circle class="start-dot" cx="30" cy="30" r="1.5" />
+
+        <use href="#path1" class="ray r1" filter="url(#ray-glow)" />
+        <use href="#path2" class="ray r2" filter="url(#ray-glow)" />
+        <use href="#path3" class="ray r3" filter="url(#ray-glow)" />
+        <use href="#path4" class="ray r4" filter="url(#ray-glow)" />
+        <use href="#path5" class="ray r5" filter="url(#ray-glow)" />
+        <use href="#path6" class="ray r6" filter="url(#ray-glow)" />
+        <use href="#path7" class="ray r7" filter="url(#ray-glow)" />
+        <use href="#path8" class="ray r8" filter="url(#ray-glow)" />
+
+        <g>
+            <rect x="85" y="40" width="30" height="20" rx="2" fill="#18181b" />
+            <text x="92" y="52.5" class="cpu-text">CPU</text>
+            
+            <rect x="93" y="37.5" width="2" height="4" rx="0.5" fill="#3f3f46" />
+            <rect x="105" y="37.5" width="2" height="4" rx="0.5" fill="#3f3f46" />
+            <rect x="113" y="45" width="4" height="2" rx="0.5" fill="#3f3f46" />
+            <rect x="113" y="52" width="4" height="2" rx="0.5" fill="#3f3f46" />
+        </g>
+    </svg>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Container Scroll Reveal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #000;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* The container that provides the scrolling length */
+        .scroll-container {
+            height: 140vh; /* Adjust this to make the scroll faster/slower */
+            position: relative;
+        }
+
+        /* The sticky wrapper that stays in view during the animation */
+        .sticky-wrapper {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            perspective: 1000px; /* Essential for the 3D tilt */
+        }
+
+        .header-section {
+            z-index: 20;
+            transition: transform 0.1s linear;
+            text-align: center;
+        }
+
+        .card-container {
+            width: 90%;
+            max-width: 1000px;
+            margin-top: -3rem; /* Matches the -mt-12 in your React code */
+            transition: transform 0.1s linear;
+            transform-origin: top center;
+            
+            /* Visual Styles from your code */
+            background: #222222;
+            border: 4px solid #6C6C6C;
+            border-radius: 30px;
+            padding: 1rem;
+            box-shadow: 0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026;
+        }
+
+        .inner-content {
+            background: #18181b;
+            width: 100%;
+            height: 400px; /* Default mobile height */
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .inner-content {
+                height: 600px;
+            }
+        }
+
+        /* Placeholder image styling */
+        .inner-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scroll-container" id="trigger">
+        <div class="sticky-wrapper">
+            
+            <div class="header-section" id="header">
+                <h2 class="text-4xl md:text-7xl font-bold">
+                    Unleash the power of <br>
+                    <span class="text-5xl md:text-9xl mt-1">Scroll Animations</span>
+                </h2>
+            </div>
+
+            <div class="card-container" id="card">
+                <div class="inner-content">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426" alt="Dashboard Preview">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="h-screen bg-black flex items-center justify-center">
+        <p class="text-zinc-500">Scroll back up to see the magic again.</p>
+    </div>
+
+    <script>
+        const trigger = document.getElementById('trigger');
+        const card = document.getElementById('card');
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', () => {
+            const rect = trigger.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            // Calculate progress (0 to 1) based on how much of the container has been scrolled
+            // We start the animation when the top of the container hits the top of the viewport
+            let progress = Math.abs(rect.top) / (rect.height - windowHeight);
+            
+            // Clamp progress between 0 and 1
+            progress = Math.min(Math.max(progress, 0), 1);
+
+            // 1. Rotation: Start at 20deg, end at 0deg
+            const rotation = 20 - (progress * 20);
+
+            // 2. Scale: Start at 1.05, end at 1.0 (Mobile logic: 0.7 to 0.9)
+            const isMobile = window.innerWidth <= 768;
+            let scale;
+            if (isMobile) {
+                scale = 0.7 + (progress * 0.2);
+            } else {
+                scale = 1.05 - (progress * 0.05);
+            }
+
+            // 3. Translate Header: Move up 100px
+            const translateVal = progress * -100;
+
+            // Apply transformations
+            card.style.transform = `rotateX(${rotation}deg) scale(${scale})`;
+            header.style.transform = `translateY(${translateVal}px)`;
+        });
+    </script>
+</body>
+</html>

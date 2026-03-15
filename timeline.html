@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #f1f5f9;
+            --para-color: #94a3b8;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+
+        /* The main container */
+        .timeline-container {
+            position: relative;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        /* The Animated Straight Line with Flowing Pulse */
+        .timeline-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #334155;
+            /* Solid grey base */
+            border-radius: 2px;
+            overflow: hidden;
+            /* Ensure pulse stays within the line */
+        }
+
+        .timeline-line::after {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to bottom,
+                    transparent,
+                    #f97316,
+                    #fbbf24,
+                    #f97316,
+                    transparent);
+            animation: flowDown 6s linear infinite;
+        }
+
+        @keyframes flowDown {
+            0% {
+                top: -150px;
+            }
+
+            100% {
+                top: 100%;
+            }
+        }
+
+        /* Individual Timeline Item */
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 60px;
+            /* Space for the line and dots */
+        }
+
+        /* The Dots on the line - Synchronized Pulse */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            /* Perfectly centered over the 4px vertical line */
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background-color: #334155;
+            border: 4px solid var(--bg-color);
+            border-radius: 50%;
+            z-index: 2;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            animation: dotPulse 6s linear infinite;
+        }
+
+        /* Adjusting delays for sync based on position */
+        /* Animation duration is 6s. Pulse travels from top to bottom. */
+        .timeline-item:nth-child(2)::before {
+            animation-delay: 0.4s;
+        }
+
+        /* First item */
+        .timeline-item:nth-child(3)::before {
+            animation-delay: 1.6s;
+        }
+
+        /* Second item */
+        .timeline-item:nth-child(4)::before {
+            animation-delay: 2.8s;
+        }
+
+        /* Third item */
+        .timeline-item:nth-child(5)::before {
+            animation-delay: 4.0s;
+        }
+
+        /* Fourth item */
+
+        @keyframes dotPulse {
+
+            0%,
+            10%,
+            30%,
+            100% {
+                background-color: #334155;
+                box-shadow: none;
+            }
+
+            20% {
+                background-color: #F28D69;
+                /* Match the brightest part of the ray */
+                box-shadow: 0 0 20px rgba(249, 115, 22, 0.9),
+                    0 0 10px rgba(251, 191, 36, 0.8);
+            }
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin: 0 0 8px 0;
+            color: #F28D69;
+        }
+
+        .timeline-para {
+            margin: 0;
+            color: var(--para-color);
+            line-height: 1.6;
+            /* Clamping to 2 lines as requested */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="timeline-container">
+        <div class="timeline-line"></div>
+
+        <div class="timeline-item">
+            <h3 class="timeline-title">Phase One: Concept</h3>
+            <p class="timeline-para">The initial stage involves brainstorming core ideas and establishing the primary
+                goals for the project's long-term success and viability.</p>
+        </div>
+
+        <div class="timeline-item">
+            <h3 class="timeline-title">Phase Two: Design</h3>
+            <p class="timeline-para">Our creative team crafts high-fidelity mockups and prototypes to visualize the user
+                journey and ensure an intuitive interface design.</p>
+        </div>
+
+        <div class="timeline-item">
+            <h3 class="timeline-title">Phase Three: Development</h3>
+            <p class="timeline-para">Engineering begins the implementation process, utilizing modern frameworks to build
+                a robust and scalable architecture for the final product.</p>
+        </div>
+
+        <div class="timeline-item">
+            <h3 class="timeline-title">Phase Four: Launch</h3>
+            <p class="timeline-para">The final deployment phase includes rigorous testing and quality assurance before
+                the official release to the global production environment.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Plans - Modern UI</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --background: #ffffff;
+            --foreground: #0f172a;
+            --primary: #0f172a;
+            --primary-foreground: #ffffff;
+            --muted: #f1f5f9;
+            --muted-foreground: #64748b;
+            --border: #e2e8f0;
+            --ring: #94a3b8;
+            --radius: 0.5rem;
+            --accent: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.5;
+            padding: 3rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        header h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        header p {
+            margin-top: 0.75rem;
+            color: var(--muted-foreground);
+            font-size: 1.125rem;
+            max-width: 42rem;
+            margin-inline: auto;
+        }
+
+        /* Toggle Group */
+        .toggle-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .toggle-group {
+            display: flex;
+            background: var(--muted);
+            padding: 0.25rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .toggle-item {
+            padding: 0.375rem 1.5rem;
+            border: none;
+            background: transparent;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: calc(var(--radius) - 2px);
+            position: relative;
+            transition: all 0.2s;
+        }
+
+        .toggle-item.active {
+            background: var(--background);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: -12px;
+            right: 0;
+            background: rgba(15, 23, 42, 0.1);
+            color: var(--primary);
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+
+        /* Pricing Grid */
+        .pricing-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Pricing Card */
+        .card {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card.popular {
+            border: 2px solid var(--primary);
+            transform: scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary);
+            color: var(--primary-foreground);
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+        }
+
+        .card-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .card-description {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .price-container {
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .price {
+            font-size: 2.25rem;
+            font-weight: 800;
+        }
+
+        .price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--muted-foreground);
+        }
+
+        /* Features List */
+        .features-list {
+            list-style: none;
+            flex-grow: 1;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-item i {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .feature-item.excluded {
+            color: var(--muted-foreground);
+        }
+
+        .feature-item.included i {
+            color: var(--primary);
+        }
+
+        /* Button */
+        .btn {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: background 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--primary-foreground);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            margin-top: 4rem;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .comparison-section {
+                display: block;
+            }
+        }
+
+        .comparison-table-wrapper {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+
+        th {
+            background: var(--accent);
+            text-align: left;
+            padding: 1rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h2>Choose the right plan for your business.</h2>
+            <p>Scale effortlessly with features designed for growth, from startups to enterprise.</p>
+        </header>
+
+        <div class="toggle-container">
+            <div class="toggle-group">
+                <button class="toggle-item" data-cycle="monthly">Monthly</button>
+                <button class="toggle-item active" data-cycle="annually">
+                    Annually
+                    <span class="discount-badge">Save 20%</span>
+                </button>
+                <button class="toggle-item" data-cycle="2years">
+                    2 Years
+                    <span class="discount-badge">Save 30%</span>
+                </button>
+                <button class="toggle-item" data-cycle="3years">
+                    3 Years
+                    <span class="discount-badge">Save 40%</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="pricing-grid">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Lite</h3>
+                    <p class="card-description">Perfect for new teams and small projects.</p>
+                </div>
+                <div class="price-container">
+                    <p class="price" id="lite-price">$15.17 <span>/mo</span></p>
+                    <p class="card-description billing-info" id="lite-billing">Billed annually ($182)</p>
+                </div>
+                <ul class="features-list">
+                    <li class="feature-item included"><i data-lucide="check"></i> 1 Project</li>
+                    <li class="feature-item included"><i data-lucide="check"></i> Basic Analytics</li>
+                    <li class="feature-item included"><i data-lucide="check"></i> Email Support</li>
+                    <li class="feature-item included"><i data-lucide="check"></i> 10,000 API Calls</li>
+                    <li class="feature-item excluded"><i data-lucide="x"></i> Custom Domains</li>
+                </ul>
+                <button class="btn">Start Free Trial</button>
+            </div>
+
+            <div class="card popular">
+                <span class="popular-badge">Most Popular</span>
+                <div class="card-header">
+                    <h3>Pro</h3>
+                    <p class="card-description">Everything a growing business needs.</p>
+                </div>
+                <div class="price-container">
+                    <p class="price" id="pro-price">$39.17 <span>/mo</span></p>
+                    <p class="card-description billing-info" id="pro-billing">Billed annually ($470)</p>
+                </div>
+                <ul class="features-list">
+                    <li class="feature-item included"><i data-lucide="check"></i> Unlimited Projects</li>
+                    <li class="feature-item included"><i data-lucide="check"></i> Advanced Analytics</li>
+                    <li class="feature-item included"><i data-lucide="check"></i> Priority Chat Support</li>
+                    <li class="feature-item included"><i data-lucide="check"></i> 500,000 API Calls</li>
+                    <li class="feature-item included"><i data-lucide="check"></i> Custom Domains</li>
+                </ul>
+                <button class="btn btn-primary">Choose Pro</button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Elite</h3>
+                    <p class="card-description">Advanced features for large organizations.</p>
+                </div>
+                <div class="price-container">
+                    <p class="price" id="elite-price">$159.17 <span>/mo</span></p>
+                    <p class="card-description billing-info" id="elite-billing">Billed annually ($1910)</p>
+                </div>
+                <ul class="features-list">
+                    <li class="feature-item included"><i data-lucide="check"></i> Unlimited Projects</li>
+                    <li class="feature-item included"><i data-lucide="check"></i> Advanced Analytics</li>
+                    <li class="feature-item included"><i data-lucide="check"></i> Dedicated Manager</li>
+                    <li class="feature-item included"><i data-lucide="check"></i> 5,000,000 API Calls</li>
+                    <li class="feature-item included"><i data-lucide="check"></i> SSO</li>
+                </ul>
+                <button class="btn">Contact Sales</button>
+            </div>
+        </div>
+
+        <section class="comparison-section">
+            <h3 style="text-align: center; font-size: 1.5rem; font-weight: 700;">Detailed Feature Comparison</h3>
+            <div class="comparison-table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 40%;">Feature</th>
+                            <th class="text-center">Lite</th>
+                            <th class="text-center">Pro</th>
+                            <th class="text-center">Elite</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Unlimited Projects</td>
+                            <td class="text-center"><i data-lucide="x" style="color: #64748b; width: 1.2rem;"></i></td>
+                            <td class="text-center"><i data-lucide="check" style="color: #0f172a; width: 1.2rem;"></i>
+                            </td>
+                            <td class="text-center"><i data-lucide="check" style="color: #0f172a; width: 1.2rem;"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Advanced Analytics</td>
+                            <td class="text-center"><i data-lucide="x" style="color: #64748b; width: 1.2rem;"></i></td>
+                            <td class="text-center"><i data-lucide="check" style="color: #0f172a; width: 1.2rem;"></i>
+                            </td>
+                            <td class="text-center"><i data-lucide="check" style="color: #0f172a; width: 1.2rem;"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Priority Support</td>
+                            <td class="text-center"><i data-lucide="x" style="color: #64748b; width: 1.2rem;"></i></td>
+                            <td class="text-center"><i data-lucide="check" style="color: #0f172a; width: 1.2rem;"></i>
+                            </td>
+                            <td class="text-center"><i data-lucide="check" style="color: #0f172a; width: 1.2rem;"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Custom Domains</td>
+                            <td class="text-center"><i data-lucide="x" style="color: #64748b; width: 1.2rem;"></i></td>
+                            <td class="text-center"><i data-lucide="check" style="color: #0f172a; width: 1.2rem;"></i>
+                            </td>
+                            <td class="text-center"><i data-lucide="check" style="color: #0f172a; width: 1.2rem;"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>SSO (Single Sign-On)</td>
+                            <td class="text-center"><i data-lucide="x" style="color: #64748b; width: 1.2rem;"></i></td>
+                            <td class="text-center"><i data-lucide="x" style="color: #64748b; width: 1.2rem;"></i></td>
+                            <td class="text-center"><i data-lucide="check" style="color: #0f172a; width: 1.2rem;"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Pricing Logic
+        const toggleItems = document.querySelectorAll('.toggle-item');
+        const prices = {
+            lite: { monthly: 19, annually: 15.17, '2years': 13.30, '3years': 11.40 },
+            pro: { monthly: 49, annually: 39.17, '2years': 34.30, '3years': 29.40 },
+            elite: { monthly: 199, annually: 159.17, '2years': 139.30, '3years': 119.40 }
+        };
+
+        toggleItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Update UI
+                toggleItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                const cycle = item.getAttribute('data-cycle');
+
+                // Update Prices
+                document.getElementById('lite-price').innerHTML = `$${prices.lite[cycle]} <span>/mo</span>`;
+                document.getElementById('pro-price').innerHTML = `$${prices.pro[cycle]} <span>/mo</span>`;
+                document.getElementById('elite-price').innerHTML = `$${prices.elite[cycle]} <span>/mo</span>`;
+
+                // Update Billing Info
+                const billingLabels = {
+                    monthly: 'Billed monthly',
+                    annually: 'Billed annually ($182/yr)',
+                    '2years': 'Billed every 2 years ($319/2yr)',
+                    '3years': 'Billed every 3 years ($430/3yr)'
+                };
+                const billingLabelsPro = {
+                    monthly: 'Billed monthly',
+                    annually: 'Billed annually ($470/yr)',
+                    '2years': 'Billed every 2 years ($823/2yr)',
+                    '3years': 'Billed every 3 years ($1058/3yr)'
+                };
+                const billingLabelsElite = {
+                    monthly: 'Billed monthly',
+                    annually: 'Billed annually ($1910/yr)',
+                    '2years': 'Billed every 2 years ($3343/2yr)',
+                    '3years': 'Billed every 3 years ($4298/3yr)'
+                };
+
+                document.getElementById('lite-billing').textContent = billingLabels[cycle];
+                document.getElementById('pro-billing').textContent = billingLabelsPro[cycle];
+                document.getElementById('elite-billing').textContent = billingLabelsElite[cycle];
+            });
+        });
+    </script>
+</body>
+
+</html>

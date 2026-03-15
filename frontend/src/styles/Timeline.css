@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* Timeline styles adapted for React */
+
+.timeline-container {
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .timeline-container {
+        padding-left: 10px;
+    }
+
+    .timeline-line {
+        left: 10px;
+    }
+
+    .timeline-item {
+        padding-left: 40px;
+        margin-bottom: 30px;
+    }
+
+    .timeline-item::before {
+        left: 5px;
+    }
+
+    .timeline-title {
+        font-size: 1.1rem;
+    }
+
+    .timeline-para {
+        font-size: 0.85rem;
+    }
+}
+
+/* The Animated Straight Line with Flowing Pulse */
+.timeline-line {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: rgba(0, 0, 0, 0.08);
+    /* Transparent grey-glass base */
+    backdrop-filter: blur(4px);
+    border-radius: 2px;
+    overflow: hidden;
+    /* Ensure pulse stays within the line */
+}
+
+.timeline-line::after {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(to bottom,
+            transparent,
+            #f97316,
+            #fbbf24,
+            #f97316,
+            transparent);
+    animation: flowDown 6s linear infinite;
+}
+
+@keyframes flowDown {
+    0% {
+        top: -150px;
+    }
+
+    100% {
+        top: 100%;
+    }
+}
+
+/* Individual Timeline Item */
+.timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+    padding-left: 60px;
+    text-align: left;
+    /* Space for the line and dots */
+}
+
+/* The Dots on the line - Synchronized Pulse */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    /* Perfectly centered over the 4px vertical line */
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background-color: rgba(0, 0, 0, 0.08);
+    /* Matching glass base */
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Subtle glass border */
+    border-radius: 50%;
+    z-index: 2;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    animation: dotPulse 6s linear infinite;
+}
+
+/* Adjusting delays for sync based on position */
+.timeline-item:nth-child(2)::before {
+    animation-delay: 0.4s;
+}
+
+.timeline-item:nth-child(3)::before {
+    animation-delay: 1.6s;
+}
+
+.timeline-item:nth-child(4)::before {
+    animation-delay: 2.8s;
+}
+
+.timeline-item:nth-child(5)::before {
+    animation-delay: 4.0s;
+}
+
+@keyframes dotPulse {
+
+    0%,
+    10%,
+    30%,
+    100% {
+        background-color: rgba(0, 0, 0, 0.08);
+        box-shadow: none;
+    }
+
+    20% {
+        background-color: #F28D69;
+        /* Match user's preferred orange shade */
+        box-shadow: 0 0 20px rgba(249, 115, 22, 0.9),
+            0 0 10px rgba(251, 191, 36, 0.8);
+    }
+}
+
+.timeline-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to top, #ec650a 15%, #fcb852 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.timeline-para {
+    margin: 0;
+    color: #666;
+    /* Match services text color */
+    line-height: 1.6;
+    font-size: 0.95rem;
+    font-family: 'Poppins', sans-serif;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    /* Standard property */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
