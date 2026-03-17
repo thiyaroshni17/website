@@ -22,7 +22,7 @@
 /* Navbar integration - Scoped to Solutions page */
 .solutions-page-container .solutions-header {
     position: relative;
-    z-index: 1000;
+    z-index: 20000;
 }
 
 .solutions-page-container .navbar {
@@ -73,7 +73,7 @@
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 10000;
+    z-index: 20000;
     display: flex;
     list-style: none;
     background: rgba(255, 255, 255, 0.5);
@@ -115,7 +115,7 @@
     width: 30px;
     height: 21px;
     cursor: pointer;
-    z-index: 10001;
+    z-index: 20001;
 }
 
 .solutions-page-container .hamburger span {
@@ -147,7 +147,7 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(4px);
-    z-index: 9999;
+    z-index: 19999;
 }
 
 .solutions-page-container .nav-backdrop.active {

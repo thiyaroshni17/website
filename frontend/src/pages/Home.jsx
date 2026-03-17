@@ -2,13 +2,81 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import '../styles/Home.css';
-import { Phone, Cloud, Download, Zap, MessageCircle, Stethoscope, LineChart, ShoppingCart, Truck, Building2, Cpu, BookOpen, Coffee, Film, Instagram, Linkedin, Facebook } from 'lucide-react';
+import { 
+    Phone, 
+    Cloud, 
+    Download, 
+    Zap, 
+    MessageCircle, 
+    Stethoscope, 
+    LineChart, 
+    ShoppingCart, 
+    Truck, 
+    Building2, 
+    Cpu, 
+    BookOpen, 
+    Coffee, 
+    Film, 
+    Instagram, 
+    Linkedin, 
+    Facebook,
+    CheckCircle2,
+    Video,
+    Pause,
+    Play,
+    SkipForward,
+    Volume2,
+    Settings,
+    Monitor,
+    Maximize,
+    Mail,
+    Instagram as InstagramIcon, // Just to be safe with duplicates if any
+    Twitter, 
+    MapPin,
+    Calendar,
+    Users,
+    Brain
+} from 'lucide-react';
 import Timeline from '../components/Timeline';
 import IndustryCarousel from '../components/IndustryCarousel';
 import CPU from '../components/CPU';
 
 
 const Home = () => {
+    const videoRef = useRef(null);
+    const [isPlaying, setIsPlaying] = useState(true);
+    const [progress, setProgress] = useState(0);
+
+    const handleTimeUpdate = () => {
+        if (videoRef.current) {
+            const currentProgress = (videoRef.current.currentTime / videoRef.current.duration) * 100;
+            setProgress(currentProgress);
+        }
+    };
+
+    const toggleVideoPlayback = (e) => {
+        e.stopPropagation(); // Prevent bubbling if clicking controls
+        if (videoRef.current) {
+            if (videoRef.current.paused) {
+                videoRef.current.play();
+                setIsPlaying(true);
+            } else {
+                videoRef.current.pause();
+                setIsPlaying(false);
+            }
+        }
+    };
+
+    const handleProgressClick = (e) => {
+        e.stopPropagation();
+        if (videoRef.current) {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const width = rect.width;
+            const seekTime = (clickX / width) * videoRef.current.duration;
+            videoRef.current.currentTime = seekTime;
+        }
+    };
     const industriesData = [
         { name: "Healthcare", icon: <Stethoscope size={24} />, desc: "Smart diagnostic systems & records management." },
         { name: "Finance", icon: <LineChart size={24} />, desc: "Secure automated trading & risk analytics." },
@@ -131,8 +199,8 @@ const Home = () => {
                         <li><Link to="/services" onClick={() => setIsMenuOpen(false)}>Services</Link></li>
 
                         <li><Link to="/products" onClick={() => setIsMenuOpen(false)}>Products</Link></li>
-                        <li><a href="#blog" onClick={() => setIsMenuOpen(false)}>Blog</a></li>
-                        <li><a href="#about" onClick={() => setIsMenuOpen(false)}>About</a></li>
+                        <li><Link to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link></li>
+                        <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
                         <li><Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
                     </ul>
                 </nav>
@@ -241,75 +309,149 @@ const Home = () => {
 
             <section className="products-section white-bg" id="products">
                 <div className="section-content wide-content">
-                    <h2 className="section-title">GYM SOFTWARE</h2>
+                    <div className="gym-saas-container">
+                        <div className="gym-saas-content">
+                            <div className="gym-saas-info">
+                                <h3 className="gym-saas-title">
+                                    <span>AI-Powered Prebuilt Gym</span>
+                                    <span>Management Software</span>
+                                </h3>
+                                <p className="gym-saas-description">
+                                    Start for free and scale your business effortlessly. Our prebuilt gym software is designed to handle everything from member management to automated growth strategies.
+                                </p>
+                                
+                                <div className="gym-subscription-options">
+                                    <span className="sub-badge">Start for Free</span>
+                                    <span className="sub-badge">Monthly</span>
+                                    <span className="sub-badge">Yearly</span>
+                                    <span className="sub-badge">2 Years once</span>
+                                </div>
 
+                                <ul className="gym-features">
+                                    <li>
+                                        <Zap size={20} className="feature-icon" />
+                                        <span>Smart Attendance System</span>
+                                    </li>
+                                    <li>
+                                        <Cpu size={20} className="feature-icon" />
+                                        <span>Complete Gym Management AI Powered Software</span>
+                                    </li>
+                                    <li>
+                                        <MessageCircle size={20} className="feature-icon" />
+                                        <span>Message Automation</span>
+                                    </li>
+                                    <li>
+                                        <Cloud size={20} className="feature-icon" />
+                                        <span>Easy Data Migration and Storage</span>
+                                    </li>
+                                </ul>
 
-                    <div className="products-container">
-                        <div className="product-card">
-                            <div className="card-header">
-                                <h3>Lite Plan</h3>
-                                <p className="price">Starting from ₹4999/year</p>
+                                <div className="gym-cta-group">
+                                    <button className="gym-btn-primary">
+                                        <Download size={18} />
+                                        Download App
+                                    </button>
+                                    <Link to="/products" className="gym-btn-secondary" style={{ textDecoration: 'none' }}>
+                                        View Features
+                                    </Link>
+                                </div>
                             </div>
-                            <ul className="features-list">
-                                <li>Keypad & QR attendance</li>
-                                <li>Unlimited WhatsApp messages & emails</li>
-                                <li>Unlimited members</li>
-                                <li>Message automation</li>
-                                <li>Device included</li>
-                            </ul>
-                            <button className="card-demo-btn">
-                                View
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="btn-arrow">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg>
-                            </button>
-                        </div>
-                        <div className="product-card">
-                            <div className="card-header">
-                                <h3>Pro Plan</h3>
-                                <p className="price">Starting from ₹9999/year</p>
+
+                            <div className="gym-saas-visual">
+                                {/* This will be styled in CSS with an image or graphic */}
+                                <div className="gym-visual-card">
+                                    <div className="laptop-mockup">
+                                        <div className="laptop-screen" onClick={toggleVideoPlayback}>
+                                            <video 
+                                                ref={videoRef}
+                                                src="/laptop.mp4" 
+                                                autoPlay 
+                                                loop 
+                                                muted 
+                                                playsInline 
+                                                onTimeUpdate={handleTimeUpdate}
+                                                className="laptop-video"
+                                            />
+                                            
+                                            {/* Reference-style Video UI */}
+                                            <div className="video-player-ui">
+                                                {/* Central Play Button (Only shows when paused) */}
+                                                {!isPlaying && (
+                                                    <div className="central-play-trigger">
+                                                        <div className="central-play-box">
+                                                            <Play fill="white" size={32} />
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                                {/* Bottom Controls Bar */}
+                                                <div className="video-controls-bar">
+                                                    {/* Progress Bar inside the bar */}
+                                                    <div className="video-progress-container" onClick={handleProgressClick}>
+                                                        <div className="video-progress-rail"></div>
+                                                        <div 
+                                                            className="video-progress-fill" 
+                                                            style={{ width: `${progress}%` }}
+                                                        >
+                                                            <div className="video-scrubber-knob"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="controls-row">
+                                                        <div className="controls-left">
+                                                            <button className="v-icon-btn">
+                                                                {isPlaying ? <Pause size={18} fill="white" /> : <Play size={18} fill="white" />}
+                                                            </button>
+                                                            <button className="v-icon-btn">
+                                                                <SkipForward size={18} fill="white" />
+                                                            </button>
+                                                            <button className="v-icon-btn">
+                                                                <Volume2 size={18} />
+                                                            </button>
+                                                        </div>
+                                                        <div className="controls-right">
+                                                            <button className="v-icon-btn">
+                                                                <Settings size={18} />
+                                                            </button>
+                                                            <button className="v-icon-btn">
+                                                                <Monitor size={18} />
+                                                            </button>
+                                                            <button className="v-icon-btn">
+                                                                <Maximize size={18} />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="laptop-base"></div>
+                                        
+                                        {/* Floating Message Boxes around laptop */}
+                                        <div className="floating-msg top-left">
+                                            <Users size={18} className="floating-msg-icon" />
+                                            <span>500+ Active Clients</span>
+                                        </div>
+                                        <div className="floating-msg bottom-right-edge">
+                                            <Cloud size={18} className="floating-msg-icon" />
+                                            <span>Secure Cloud Data</span>
+                                        </div>
+                                        <div className="floating-msg top-right-v2">
+                                            <Brain size={18} className="floating-msg-icon" />
+                                            <span>AI Workout Plans</span>
+                                        </div>
+                                        <div className="floating-msg bottom-left">
+                                            <Download size={18} className="floating-msg-icon" />
+                                            <span>Easy Data Migration</span>
+                                        </div>
+                                        <div className="floating-msg bottom-center">
+                                            <Zap size={18} className="floating-msg-icon" />
+                                            <span>Regular Updates</span>
+                                        </div>
+                                    </div>
+                                    
+                                   
+                                </div>
                             </div>
-                            <ul className="features-list">
-                                <li>Password+Biometric or RFID</li>
-                                <li>Unlimited WhatsApp messages & emails</li>
-                                <li>Unlimited members</li>
-                                <li>Message automation</li>
-                                <li>Staff mobile app</li>
-                                <li>AI customised fitness plan generator</li>
-                                <li>Device included</li>
-                            </ul>
-                            <button className="card-demo-btn">
-                                View
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="btn-arrow">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg>
-                            </button>
-                        </div>
-                        <div className="product-card">
-                            <div className="card-header">
-                                <h3>Elite Plan</h3>
-                                <p className="price">Starting from ₹16999/year</p>
-                            </div>
-                            <ul className="features-list">
-                                <li>Password+FaceID</li>
-                                <li>Unlimited WhatsApp messages & emails</li>
-                                <li>Unlimited members</li>
-                                <li>Message automation</li>
-                                <li>Staff mobile app</li>
-                                <li>Multi branch portal</li>
-                                <li>AI suggested business insights</li>
-                                <li>AI customised fitness plan generator</li>
-                                <li>Device included</li>
-                            </ul>
-                            <button className="card-demo-btn">
-                                View
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="btn-arrow">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg>
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -401,7 +543,7 @@ const Home = () => {
                                 </div>
                                 <div>
                                     <p className="contact-label">Location</p>
-                                    <p className="contact-value">Chennai, Tamil Nadu, India</p>
+                                    <p className="contact-value">No 5/23 , perumal kovil street, thideer nagar,<br></br> maduravoyal, chennai - 600095, Tamil Nadu, India</p>
                                 </div>
                             </div>
                         </div>

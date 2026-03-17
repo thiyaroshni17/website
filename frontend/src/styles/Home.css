@@ -64,7 +64,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 9999;
+    z-index: 20000;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -94,10 +94,11 @@ body {
 .logo-name {
     font-family: 'Poppins', sans-serif;
     font-size: 24px;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 .logo-secondary {
+    font-family: 'Poppins', sans-serif;
     background: linear-gradient(to top, #999999 20%, #FFFFFF 80%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -127,7 +128,7 @@ body {
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 10000;
+    z-index: 20001;
     display: flex;
     list-style: none;
     background: rgba(77, 77, 77, 0.1);
@@ -146,12 +147,14 @@ body {
 
 .nav-links a {
     text-decoration: none;
+    font-family: 'Poppins', sans-serif;
     background: linear-gradient(to top, #999999 20%, #FFFFFF 80%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
     font-size: 16px;
+    font-weight: 500;
     transition: 0.3s ease;
     display: inline-block;
     cursor: pointer;
@@ -165,7 +168,7 @@ body {
     width: 30px;
     height: 21px;
     cursor: pointer;
-    z-index: 10001;
+    z-index: 20002;
 }
 
 .hamburger span {
@@ -197,7 +200,7 @@ body {
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(4px);
-    z-index: 9999;
+    z-index: 19999;
 }
 
 .nav-backdrop.active {
@@ -599,240 +602,544 @@ h1 {
     color: transparent;
 }
 
-/* --- Products Section Shine Effect --- */
-.products-container {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    /* Stretch cards to match the height of the tallest one */
-    gap: 30px;
+/* --- Gym SaaS Section --- */
+.gym-saas-container {
     width: 100%;
-    max-width: 2000px;
-    margin-left: auto;
-    margin-right: auto;
-    flex-wrap: nowrap;
+    max-width: 1400px;
+    margin: 40px auto;
     padding: 20px;
 }
 
-.product-card {
-    position: relative;
-    background: rgba(255, 255, 255, 0.4) !important;
-    /* Enhanced glass visibility */
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 12px;
-    padding: 35px 30px;
-    width: 600px;
-    min-height: 600px;
-    /* Increased min-height to accommodate more content */
-    color: #333;
-    overflow: hidden;
-    text-align: left;
+.gym-saas-content {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 25px;
-    /* Refined spacing */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+    text-align: left;
 }
 
-@media (max-width: 1200px) {
-    .products-container {
-        flex-wrap: wrap;
+@media (max-width: 1024px) {
+    .gym-saas-content {
+        flex-direction: column;
+        gap: 60px;
+        text-align: center;
+    }
+}
+
+.gym-saas-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.gym-saas-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    display: flex;
+    flex-direction: column;
+}
+
+.gym-saas-title span {
+    background: linear-gradient(to top, #000000, #797979);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+.gym-saas-description {
+    font-size: 1.1rem;
+    color: #4b5563;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.gym-subscription-options {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 35px;
+}
+
+@media (max-width: 1024px) {
+    .gym-subscription-options {
         justify-content: center;
     }
+}
 
-    .product-card {
-        width: 45%;
-        min-height: 550px;
-    }
+.sub-badge {
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: rgba(236, 101, 10, 0.08);
+    color: #ec650a;
+    border: 1px solid rgba(236, 101, 10, 0.2);
+}
+
+.gym-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 @media (max-width: 768px) {
-    .product-card {
-        width: 100%;
-        min-height: auto;
-        padding: 25px 20px;
-    }
-
-    .product-card h3 {
-        font-size: 1.5rem;
-    }
-
-    .card-demo-btn {
-        width: 100%;
+    .gym-features {
+        grid-template-columns: 1fr;
     }
 }
 
-.product-card:hover {
-    transform: translateY(-5px);
+.gym-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: #444;
 }
 
-.product-card::before {
+.feature-icon {
+    color: #ec650a;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.gym-cta-group {
+    display: flex;
+    gap: 20px;
+}
+
+@media (max-width: 1024px) {
+    .gym-cta-group {
+        justify-content: center;
+    }
+}
+
+.gym-btn-primary,
+.gym-btn-secondary {
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.gym-btn-primary {
+    position: relative;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 50px;
+    padding: 12px 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    z-index: 1;
+    transition: all 0.3s ease;
+
+    /* Gradient Text */
+    background-image: linear-gradient(135deg, #ec650a, #ff9d2e) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-weight: 700 !important;
+}
+
+.gym-btn-primary::before {
     content: "";
     position: absolute;
     inset: 0;
+    border-radius: 50px;
     padding: 1px;
-    /* Thinner border */
-    /* Border width */
-    border-radius: 12px;
-
-    background-image: radial-gradient(circle at center,
-            transparent 0%,
-            #ec650a 5%,
-            #ff9d2e 10%,
-            #ec650a 15%,
-            transparent 20%);
-    background-size: 300% 300%;
-
+    background: linear-gradient(135deg, #ec650a, #ff9d2e);
     -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
     mask:
         linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
-
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-
-    animation: shine-border-animation 8s infinite linear;
     pointer-events: none;
+    z-index: -1;
 }
 
-@keyframes shine-border-animation {
-    0% {
-        background-position: 0% 0%;
-    }
-
-    50% {
-        background-position: 100% 100%;
-    }
-
-    100% {
-        background-position: 0% 0%;
-    }
+.gym-btn-primary svg {
+    color: #ec650a;
 }
 
-/* Specific Title Color for Gym Software Section (White Background) */
-#products .section-title {
-    background: linear-gradient(to top, #000000 0%, #797979 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 40px;
+.gym-btn-primary:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
 }
 
-.card-header {
+.gym-btn-secondary {
+    background: transparent;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+}
+
+.gym-btn-secondary:hover {
+    background: #f8f8f8;
+    border-color: #bbb;
+}
+
+.gym-saas-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.gym-visual-card {
+    position: relative;
     width: 100%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    padding-bottom: 15px;
+    /* Container for the laptop */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
 }
 
-.product-card h3 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin: 0;
-    background: linear-gradient(to bottom, #ec650a, #ff9d2e);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    writing-mode: horizontal-tb;
-    text-orientation: mixed;
-}
-
-.price {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1rem;
-    color: #666;
-    margin-top: 5px;
-    font-weight: 600;
-}
-
-.features-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+/* Fully Refined Laptop Mockup - Premium Flat/Vector Style */
+.laptop-mockup {
+    position: relative;
     width: 100%;
+    max-width: 800px; /* Increased size */
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    align-items: center;
 }
 
-.features-list li {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    color: #444;
+.laptop-screen {
     position: relative;
-    padding-left: 28px;
-    line-height: 1.6;
-    display: flex;
-    align-items: center;
+    width: 95%; /* Better width ratio for larger size */
+    background: #000;
+    border: 14px solid #2d2d2d;
+    border-radius: 12px 12px 0 0;
+    border-bottom: 30px solid #2d2d2d;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    z-index: 2;
 }
 
-.features-list li::before {
-    content: "\2713";
+/* Subtle camera dot */
+.laptop-screen::before {
+    content: '';
     position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #ec650a;
-    font-weight: bold;
-    width: 16px;
-    height: 16px;
-    border: 1.2px solid #ec650a;
+    top: -9px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    background: #444;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
+    z-index: 10;
 }
 
-.card-demo-btn {
-    width: 200px;
-    align-self: center;
-    margin-top: auto;
-    padding: 12px 25px;
-    background: transparent;
-    border: 1.5px solid #ec650a;
-    border-radius: 50px;
-    color: #ec650a;
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    text-transform: capitalize;
+.laptop-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #000;
 }
 
-.btn-arrow {
+.laptop-base {
+    position: relative;
+    width: 100%;
+    height: 12px;
+    background: #d1d5db;
+    border-radius: 0 0 15px 15px;
+    z-index: 3;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Base side/front thickness */
+.laptop-base::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: #9ca3af;
+    border-radius: 0 0 15px 15px;
+    clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%);
+}
+
+/* Trackpad */
+.laptop-base::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 5px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+}
+
+.laptop-mockup:hover .laptop-screen {
+    /* Removed scale as per user request */
     transition: transform 0.3s ease;
-    stroke: #ec650a;
 }
 
-.card-demo-btn:hover {
-    background: transparent;
+/* Reference-style Video Player UI (YouTube Aesthetic) */
+.video-player-ui {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    pointer-events: none; /* Let clicks pass through to screen toggle */
+}
+
+.laptop-screen:hover .video-player-ui {
+    opacity: 1;
+}
+
+/* Central Play Button */
+.central-play-trigger {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.central-play-box {
+    width: 80px;
+    height: 54px;
+    background: rgba(43, 43, 43, 0.9);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Bottom Controls Bar */
+.video-controls-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 15px 15px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    pointer-events: auto; /* Enable interaction with controls */
+}
+
+/* Progress Bar */
+.video-progress-container {
+    position: relative;
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.video-progress-rail {
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+}
+
+.video-progress-fill {
+    position: absolute;
+    height: 3px;
+    background: #FF0000;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.video-scrubber-knob {
+    width: 12px;
+    height: 12px;
+    background: #FF0000;
+    border-radius: 50%;
+    transform: translateX(50%) scale(0);
+    transition: transform 0.2s ease;
+}
+
+.video-progress-container:hover {
+    height: 8px;
+}
+
+.video-progress-container:hover .video-progress-rail,
+.video-progress-container:hover .video-progress-fill {
+    height: 5px;
+}
+
+.video-progress-container:hover .video-scrubber-knob {
+    transform: translateX(50%) scale(1);
+}
+
+/* Controls Row */
+.controls-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.controls-left, .controls-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.v-icon-btn {
+    background: none;
+    border: none;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.9;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.v-icon-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Floating Message Boxes around Laptop */
+.floating-msg {
+    position: absolute;
+    z-index: 10;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    animation: h-float 5s ease-in-out infinite;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+
+
+.floating-msg-icon {
     color: #ec650a;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(236, 101, 10, 0.3);
 }
 
-.card-demo-btn:hover .btn-arrow {
-    stroke: #ec650a;
-    transform: translateX(5px);
+.floating-msg.top-left {
+    top: -10%;
+    left: -10%;
+    animation-delay: 0s;
 }
 
-.card-demo-btn:active {
-    transform: translateY(0);
+.floating-msg.top-right {
+    top: 55%;
+    right: -25%;
+    animation-delay: 1.5s;
 }
+
+.floating-msg.top-right-v2 {
+    top: 5%;
+    right: -15%;
+    animation-delay: 1.2s;
+}
+
+.floating-msg.bottom-left {
+    bottom: 30%;
+    left: -25%;
+    animation-delay: 3s;
+}
+
+.floating-msg.bottom-center {
+    bottom: -17%;
+    left: 25%;
+    animation-delay: 0.8s;
+}
+
+.floating-msg.bottom-right-edge {
+    bottom: 0;
+    right: -15%;
+    animation-delay: 1.5s;
+}
+
+@keyframes h-float {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-15px) rotate(1deg); }
+}
+
+@media (max-width: 1024px) {
+    .floating-msg {
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        margin: 10px auto;
+        width: fit-content;
+        animation: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .gym-saas-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 50px;
+    }
+
+    .gym-saas-title {
+        font-size: 2rem;
+    }
+
+    .gym-subscription-options {
+        justify-content: center;
+    }
+
+    .gym-cta-group {
+        justify-content: center;
+    }
+}
+
+
+
 
 /* --- Solutions Section Styling --- */
 .solutions-section {
@@ -2287,6 +2594,9 @@ h1 {
     /* Reduced from 1.5px to make it thinner */
     background: linear-gradient(135deg, #ec650a, #ff9d2e);
     -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask:
         linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;

@@ -79,34 +79,32 @@ const Products = () => {
 
     return (
         <div className="pp-page-container">
-            <header className="pp-header">
-                <nav className="navbar">
-                    <div className="logo">
-                        <img src="/logo.png" alt="Escapeloop Logo" className="logo-img" />
-                        <span className="logo-name">
-                            <span className="logo-highlight">esc</span>
-                            <span className="logo-secondary">apeloop</span>
-                        </span>
-                    </div>
+            <nav className="navbar on-white">
+                <div className="logo">
+                    <img src="/logo.png" alt="Escapeloop Logo" className="logo-img" />
+                    <span className="logo-name">
+                        <span className="logo-highlight">esc</span>
+                        <span className="logo-secondary">apeloop</span>
+                    </span>
+                </div>
 
-                    <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
+                <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
 
-                    <div className={`nav-backdrop ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}></div>
+                <div className={`nav-backdrop ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}></div>
 
-                    <ul className={`nav-links ${isMenuOpen ? 'active' : ''} on-white`}>
-                        <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
-                        <li><Link to="/services" onClick={() => setIsMenuOpen(false)}>Services</Link></li>
-                        <li><Link to="/products" onClick={() => setIsMenuOpen(false)} style={{ color: '#ff6a3d', fontWeight: '600' }}>Products</Link></li>
-                        <li><a href="/#blog" onClick={() => setIsMenuOpen(false)}>Blog</a></li>
-                        <li><a href="/#about" onClick={() => setIsMenuOpen(false)}>About</a></li>
-                        <li><Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
-                    </ul>
-                </nav>
-            </header>
+                <ul className={`nav-links ${isMenuOpen ? 'active' : ''} on-white`}>
+                    <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
+                    <li><Link to="/services" onClick={() => setIsMenuOpen(false)}>Services</Link></li>
+                    <li><Link to="/products" onClick={() => setIsMenuOpen(false)} style={{ color: '#ff6a3d', fontWeight: '600' }}>Products</Link></li>
+                    <li><Link to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link></li>
+                    <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
+                    <li><Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
+                </ul>
+            </nav>
 
             <main className="pp-main-content">
                 <section className="pp-hero-grid-section" ref={gridRef} onMouseMove={handleMouseMove}>
@@ -615,7 +613,7 @@ const Products = () => {
                                 </div>
                             </div>
 
-                            <div className="pp-feature-row">
+                            <div className="pp-feature-row pp-support-row">
                                 <div className="pp-feature-module">
                                     <div className="pp-feature-module-header">
                                         <div className="pp-feature-icon-wrapper">
@@ -721,7 +719,7 @@ const Products = () => {
                                     </div>
                                     <div>
                                         <p className="contact-label">Location</p>
-                                        <p className="contact-value">Chennai, Tamil Nadu, India</p>
+                                        <p className="contact-value">No 5/23 , perumal kovil street, thideer nagar,<br></br> maduravoyal, chennai - 600095, Tamil Nadu, India</p>
                                     </div>
                                 </div>
                             </div>

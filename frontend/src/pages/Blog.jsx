@@ -1,15 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
-import { Instagram, Linkedin, Facebook } from 'lucide-react';
+import { ArrowRight, Calendar, User, Clock, ChevronRight } from 'lucide-react';
 import '../styles/Home.css';
+import '../styles/Blog.css';
 
 const Blog = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [activeFilter, setActiveFilter] = useState('All');
+
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+    const blogGridRef = useRef(null);
+
+    const handleMouseMove = (e) => {
+        if (!blogGridRef.current) return;
+        const rect = blogGridRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        blogGridRef.current.style.setProperty('--x', `${x}px`);
+        blogGridRef.current.style.setProperty('--y', `${y}px`);
+    };
+
+    const categories = ['All', 'Automation', 'AI', 'Design', 'Strategy'];
+
+    const [blogs, setBlogs] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/escapeloop/all');
+                setBlogs(response.data);
+            } catch (error) {
+                console.error('Error fetching blogs:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchBlogs();
+    }, []);
+
+    // Merge static and dynamic for now, or just use dynamic
+    const displayPosts = blogs.length > 0 ? blogs : [
+        {
+            _id: '1',
+            category: 'Automation',
+            title: 'How to Escape the Operational Loop with AI',
+            excerpt: 'Scaling a business requires removing yourself from repetitive tasks. Here is our guide to intelligent workflow automation.',
+            author: 'Dev',
+            createdAt: '2026-03-15T12:00:00Z',
+            media: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800'
+        }
+    ];
+
+    const filteredPosts = activeFilter === 'All' 
+        ? displayPosts 
+        : displayPosts.filter(post => post.category === activeFilter);
+
     return (
-        <div className="home-container">
+        <div className="blog-page">
             <nav className="navbar on-white">
                 <div className="logo">
                     <img src="/logo.png" alt="Escapeloop Logo" className="logo-img" />
@@ -26,88 +77,82 @@ const Blog = () => {
                     <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
                     <li><Link to="/services" onClick={() => setIsMenuOpen(false)}>Services</Link></li>
                     <li><Link to="/products" onClick={() => setIsMenuOpen(false)}>Products</Link></li>
-                    <li><a href="#blog" onClick={() => setIsMenuOpen(false)} style={{ color: '#ff6a3d', fontWeight: '600' }}>Blog</a></li>
-                    <li><a href="#about" onClick={() => setIsMenuOpen(false)}>About</a></li>
+                    <li><Link to="/blog" onClick={() => setIsMenuOpen(false)} style={{ color: '#ff6a3d', fontWeight: '600' }}>Blog</Link></li>
+                    <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
                     <li><Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
                 </ul>
             </nav>
 
-            <main style={{ paddingTop: '100px' }}>
-                <section className="contact-section white-bg" id="contact">
-                    <div className="grid-perspective">
-                        <div className="grid-plane"><div className="grid-animate"></div></div>
-                    </div>
-                    <div className="horizon-fade"></div>
-
-                    <div className="contact-wrapper">
-                        {/* Left: Contact Details */}
-                        <div className="contact-details">
-                            <h2 className="section-title">CONTACT US</h2>
-                            <p className="contact-tagline">Ready to escape the loop? Let's talk.</p>
-                            <div className="contact-items">
-                                <div className="contact-item">
-                                    <div className="contact-icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <rect x="2" y="4" width="20" height="16" rx="2" /><polyline points="22,6 12,13 2,6" />
-                                        </svg>
-                                    </div>
-                                    <div><p className="contact-label">Email</p><p className="contact-value">escapeloop25@gmail.com</p></div>
-                                </div>
-                                <div className="contact-item">
-                                    <div className="contact-icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.23h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                                        </svg>
-                                    </div>
-                                    <div><p className="contact-label">Call</p><p className="contact-value">+91 93427 42656 | +91 73585 46188</p></div>
-                                </div>
-                                <div className="contact-item">
-                                    <div className="contact-icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-                                        </svg>
-                                    </div>
-                                    <div><p className="contact-label">WhatsApp</p><p className="contact-value">+91 93427 42656</p></div>
-                                </div>
-                                <div className="contact-item">
-                                    <div className="contact-icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
-                                        </svg>
-                                    </div>
-                                    <div><p className="contact-label">Location</p><p className="contact-value">Chennai, Tamil Nadu, India</p></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Right: Contact Form */}
-                        <div className="contact-form-card">
-                            <form className="contact-form">
-                                <div className="form-group"><input type="text" placeholder="Name" /></div>
-                                <div className="form-group"><input type="tel" placeholder="Mobile Number" /></div>
-                                <div className="form-group"><input type="email" placeholder="Email" /></div>
-                                <div className="form-group"><textarea rows="4" placeholder="Tell us about your project..."></textarea></div>
-                                <button type="submit" className="contact-submit-btn">Send Message</button>
-                            </form>
-                        </div>
+            <main>
+                <section className="blog-hero" ref={blogGridRef} onMouseMove={handleMouseMove}>
+                    <div className="blog-glow blog-glow-1"></div>
+                    <div className="blog-glow blog-glow-2"></div>
+                    <div className="blog-grid-layer"></div>
+                    <div className="blog-grid-reveal"></div>
+                    <div className="blog-container hero-content">
+                        <span className="blog-tagline">Insights & Innovation</span>
+                        <h1>The <span>Escapeloop</span> Journal</h1>
+                        <p>Exploring the intersection of AI, automation, and premium digital experience.</p>
                     </div>
 
-                    {/* Social links — full width below */}
-                    <div className="ct-social-connect">
-                        <h3>Follow Our Journey</h3>
-                        <div className="ct-social-links">
-                            <a href="https://instagram.com/escapeloop" target="_blank" rel="noopener noreferrer" className="ct-social-btn instagram">
-                                <Instagram size={20} /><span>escapeloop.ai</span>
-                            </a>
-                            <a href="https://linkedin.com/company/escapeloop" target="_blank" rel="noopener noreferrer" className="ct-social-btn linkedin">
-                                <Linkedin size={20} /><span>escapeloop</span>
-                            </a>
-                            <a href="https://facebook.com/escapeloop" target="_blank" rel="noopener noreferrer" className="ct-social-btn facebook">
-                                <Facebook size={20} /><span>escapeloop</span>
-                            </a>
+                    <div className="blog-container" style={{ position: 'relative', zIndex: 30 }}>
+                        <div className="blog-filters">
+                            {categories.map(cat => (
+                                <button 
+                                    key={cat} 
+                                    className={`filter-btn ${activeFilter === cat ? 'active' : ''}`}
+                                    onClick={() => setActiveFilter(cat)}
+                                >
+                                    {cat}
+                                </button>
+                            ))}
                         </div>
                     </div>
                 </section>
+
+                <div className="blog-container">
+                    {activeFilter === 'All' && displayPosts.length > 0 && (
+                        <div className="featured-post">
+                            <div className="featured-img-wrapper">
+                                <img src={displayPosts[0].media || displayPosts[0].image} alt="Featured Post" />
+                            </div>
+                            <div className="featured-content">
+                                <div className="post-meta">
+                                    <span className="post-category">{displayPosts[0].category}</span>
+                                    <span>•</span>
+                                    <span>{new Date(displayPosts[0].createdAt || displayPosts[0].date).toLocaleDateString()}</span>
+                                </div>
+                                <h2>{displayPosts[0].title}</h2>
+                                <p>{displayPosts[0].excerpt || (displayPosts[0].sections?.[0]?.content?.substring(0, 150) + '...')}</p>
+                                <Link to={`/blog/${displayPosts[0]._id || displayPosts[0].id}`} className="read-more">
+                                    Read Article <ArrowRight size={18} />
+                                </Link>
+                            </div>
+                        </div>
+                    )}
+
+                    <div className="blog-grid">
+                        {(activeFilter === 'All' ? filteredPosts.slice(1) : filteredPosts).map(post => (
+                            <div key={post._id || post.id} className="blog-card">
+                                <div className="card-img-wrapper">
+                                    <img src={post.media || post.image} alt={post.title} />
+                                </div>
+                                <div className="card-content">
+                                    <div className="post-meta">
+                                        <span className="post-category">{post.category}</span>
+                                        <span>•</span>
+                                        <span>{new Date(post.createdAt || post.date).toLocaleDateString()}</span>
+                                    </div>
+                                    <h3>{post.title}</h3>
+                                    <p>{post.excerpt || (post.sections?.[0]?.content?.substring(0, 100) + '...')}</p>
+                                    <Link to={`/blog/${post._id || post.id}`} className="read-more">
+                                        Read More <ChevronRight size={18} />
+                                    </Link>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </main>
 
             <Footer />

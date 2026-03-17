@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
-import { Instagram, Linkedin, Facebook } from 'lucide-react';
+import { Instagram, Linkedin, Facebook, Star, Zap, Users, ArrowRight, CheckCircle2 } from 'lucide-react';
+import '../styles/About.css';
 import '../styles/Home.css';
 
 const About = () => {
@@ -9,7 +10,7 @@ const About = () => {
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     return (
-        <div className="home-container">
+        <div className="about-page">
             <nav className="navbar on-white">
                 <div className="logo">
                     <img src="/logo.png" alt="Escapeloop Logo" className="logo-img" />
@@ -26,85 +27,133 @@ const About = () => {
                     <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
                     <li><Link to="/services" onClick={() => setIsMenuOpen(false)}>Services</Link></li>
                     <li><Link to="/products" onClick={() => setIsMenuOpen(false)}>Products</Link></li>
-                    <li><a href="#blog" onClick={() => setIsMenuOpen(false)}>Blog</a></li>
-                    <li><a href="#about" onClick={() => setIsMenuOpen(false)} style={{ color: '#ff6a3d', fontWeight: '600' }}>About</a></li>
+                    <li><Link to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link></li>
+                    <li><Link to="/about" onClick={() => setIsMenuOpen(false)} style={{ color: '#ff6a3d', fontWeight: '600' }}>About</Link></li>
                     <li><Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
                 </ul>
             </nav>
 
-            <main style={{ paddingTop: '100px' }}>
-                <section className="contact-section white-bg" id="contact">
-                    <div className="grid-perspective">
-                        <div className="grid-plane"><div className="grid-animate"></div></div>
-                    </div>
-                    <div className="horizon-fade"></div>
+            <main>
+                <section className="about-hero">
+                    <div className="about-container">
+                        <div className="about-hero-flex">
+                            <div className="about-hero-image-wrapper">
+                                <div className="about-circle-bg"></div>
+                                
+                                {/* Floating Glass Boxes */}
+                                <div className="about-floating-glass-box top-left">
+                                    <Zap size={18} className="about-glass-icon" />
+                                    <span>Tech Innovator</span>
+                                </div>
+                                <div className="about-floating-glass-box top-right">
+                                    <Users size={18} className="about-glass-icon" />
+                                    <span>Automation Expert</span>
+                                </div>
+                                <div className="about-floating-glass-box bottom-left">
+                                    <Star size={18} className="about-glass-icon" />
+                                    <span>Workflow Engineer</span>
+                                </div>
 
-                    <div className="contact-wrapper">
-                        {/* Left: Contact Details */}
-                        <div className="contact-details">
-                            <h2 className="section-title">CONTACT US</h2>
-                            <p className="contact-tagline">Ready to escape the loop? Let's talk.</p>
-                            <div className="contact-items">
-                                <div className="contact-item">
-                                    <div className="contact-icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <rect x="2" y="4" width="20" height="16" rx="2" /><polyline points="22,6 12,13 2,6" />
-                                        </svg>
+                                <img src="/dev.png" alt="Dev" className="about-hero-img cutout-style" />
+                           
+                            </div>
+
+                            <div className="about-hero-content">
+                                <span className="about-tagline">ABOUT ME</span>
+                                <h1>J.DEVANAZHAGAR <span>CEO & Founder.</span></h1>
+                                
+                                <p>We help you escape the digital loop with cutting-edge automation and intelligent software solutions. Our goal is to empower your business with tools that drive high-growth and lasting success.</p>
+                                 <span className="about-tagline">QUALIFICATION</span>
+                                 <p style={{ fontSize: '1rem' ,marginBottom:'30px'}}>B.TECH CSE - DS & AI | WORKFLOW AUTOMATION | <br></br> AI ENGINEER</p>
+                                  <span className="about-tagline">OUR VISION</span>
+                                  <p>To empower businesses with intelligent, scalable, and user-centric digital solutions that drive measurable growth and long-term success.</p>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+              
+                <section className="about-banner-container">
+                    <div className="about-container">
+                        <div className="about-banner">
+                            <div className="about-banner-content">
+                                <h2>G.ROSHNI <span>CEO & Founder.</span></h2>
+                                <p>Join the loop of excellence. Let us handle the complexity while you focus on what truly matters for your business growth.</p>
+                                <span className="about-tagline">QUALIFICATION</span>
+                                <p style={{ fontSize: '1rem' ,marginBottom:'30px'}}>B.TECH CSE - DS & AI | MERN Stack Developer | AI & ML Developer</p>
+                            </div>
+                            <div className="about-banner-image">
+                                <div className="about-banner-img-wrapper">
+                                    <div className="about-banner-img-bg"></div>
+                                    
+                                    {/* Floating Glass Boxes */}
+                                    <div className="dev-about-floating-glass-box top-left">
+                                        <Zap size={18} className="about-glass-icon" />
+                                        <span>Product Builder</span>
                                     </div>
-                                    <div><p className="contact-label">Email</p><p className="contact-value">escapeloop25@gmail.com</p></div>
-                                </div>
-                                <div className="contact-item">
-                                    <div className="contact-icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.23h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                                        </svg>
+                                    <div className="dev-about-floating-glass-box top-right">
+                                        <Star size={18} className="about-glass-icon" />
+                                        <span>Saas Creator</span>
                                     </div>
-                                    <div><p className="contact-label">Call</p><p className="contact-value">+91 93427 42656 | +91 73585 46188</p></div>
-                                </div>
-                                <div className="contact-item">
-                                    <div className="contact-icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-                                        </svg>
+                                    <div className="dev-about-floating-glass-box bottom-left">
+                                        <Users size={18} className="about-glass-icon" />
+                                        <span>Team Lead</span>
                                     </div>
-                                    <div><p className="contact-label">WhatsApp</p><p className="contact-value">+91 93427 42656</p></div>
-                                </div>
-                                <div className="contact-item">
-                                    <div className="contact-icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
-                                        </svg>
+                                    <div className="dev-about-floating-glass-box bottom-right">
+                                        <CheckCircle2 size={18} className="about-glass-icon" />
+                                        <span>Problem Solver</span>
                                     </div>
-                                    <div><p className="contact-label">Location</p><p className="contact-value">Chennai, Tamil Nadu, India</p></div>
+
+                                    <img src="/roshni.png" alt="Roshni" className="about-banner-img cutout-style" />
                                 </div>
                             </div>
                         </div>
-
-                        {/* Right: Contact Form */}
-                        <div className="contact-form-card">
-                            <form className="contact-form">
-                                <div className="form-group"><input type="text" placeholder="Name" /></div>
-                                <div className="form-group"><input type="tel" placeholder="Mobile Number" /></div>
-                                <div className="form-group"><input type="email" placeholder="Email" /></div>
-                                <div className="form-group"><textarea rows="4" placeholder="Tell us about your project..."></textarea></div>
-                                <button type="submit" className="contact-submit-btn">Send Message</button>
-                            </form>
-                        </div>
                     </div>
+                </section>
 
-                    {/* Social links — full width below */}
-                    <div className="ct-social-connect">
-                        <h3>Follow Our Journey</h3>
-                        <div className="ct-social-links">
-                            <a href="https://instagram.com/escapeloop" target="_blank" rel="noopener noreferrer" className="ct-social-btn instagram">
-                                <Instagram size={20} /><span>escapeloop.ai</span>
-                            </a>
-                            <a href="https://linkedin.com/company/escapeloop" target="_blank" rel="noopener noreferrer" className="ct-social-btn linkedin">
-                                <Linkedin size={20} /><span>escapeloop</span>
-                            </a>
-                            <a href="https://facebook.com/escapeloop" target="_blank" rel="noopener noreferrer" className="ct-social-btn facebook">
-                                <Facebook size={20} /><span>escapeloop</span>
-                            </a>
+                <section className="about-story-section">
+                    <div className="about-container">
+                        <div className="about-story-grid">
+                            <div className="about-story-main">
+                                <span className="about-tagline">THE EVOLUTION</span>
+                                <h2>Building the Future, <span>One Loop at a Time.</span></h2>
+                                <p>
+                                    Escapeloop began as a passion project among ambitious students with a single, clear goal: 
+                                    to simplify the digital world. What started as a shared vision between classmates 
+                                    quickly evolved into a powerhouse of workflow automation and creative development.
+                                </p>
+                                <p>
+                                    As students, we realized that the repetitive "loops" of daily operations were 
+                                    suffocating innovation. We built Escapeloop to be the escape hatch—empowering 
+                                    entrepreneurs and businesses to break free from manual tasks through intelligent 
+                                    SaaS solutions and seamless AI integration.
+                                </p>
+                            </div>
+
+                            <div className="about-philosophy-grid">
+                                <div className="about-philosophy-card">
+                                    <div className="phil-icon-wrapper"><Zap size={24} /></div>
+                                    <div className="phil-content">
+                                        <h3>Our Motive</h3>
+                                        <p>To eliminate digital friction and turn complex technical challenges into competitive advantages for every client we serve.</p>
+                                    </div>
+                                </div>
+                                <div className="about-philosophy-card">
+                                    <div className="phil-icon-wrapper"><Star size={24} /></div>
+                                    <div className="phil-content">
+                                        <h3>Our Vision</h3>
+                                        <p>To be the world's most intuitive automation partner, driving a future where human creativity is the only limit to business growth.</p>
+                                    </div>
+                                </div>
+                                <div className="about-philosophy-card">
+                                    <div className="phil-icon-wrapper"><Users size={24} /></div>
+                                    <div className="phil-content">
+                                        <h3>Our Mission</h3>
+                                        <p>We combine youthful energy with enterprise-grade expertise to deliver scalable, high-impact digital tools that prioritize user success.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>

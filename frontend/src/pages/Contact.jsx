@@ -69,8 +69,8 @@ const Contact = () => {
                         <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
                         <li><Link to="/services" onClick={() => setIsMenuOpen(false)}>Services</Link></li>
                         <li><Link to="/products" onClick={() => setIsMenuOpen(false)}>Products</Link></li>
-                        <li><a href="/#blog" onClick={() => setIsMenuOpen(false)}>Blog</a></li>
-                        <li><a href="/#about" onClick={() => setIsMenuOpen(false)}>About</a></li>
+                        <li><Link to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link></li>
+                        <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
                         <li><Link to="/contact" onClick={() => setIsMenuOpen(false)} style={{ color: '#ff6a3d', fontWeight: '600' }}>Contact</Link></li>
                     </ul>
                 </nav>
@@ -78,13 +78,6 @@ const Contact = () => {
 
             <main className="ct-main-content">
                 <section className="ct-hero-section" ref={gridRef} onMouseMove={handleMouseMove}>
-                    <div className="grid-perspective">
-                        <div className="grid-plane">
-                            <div className="grid-animate"></div>
-                        </div>
-                    </div>
-                    <div className="horizon-fade"></div>
-                    
                     <div className="ct-grid-layer"></div>
                     <div className="ct-grid-reveal"></div>
                     <div className="ct-hero-glow ct-glow-1"></div>
@@ -158,7 +151,7 @@ const Contact = () => {
                                         </div>
                                         <div className="ct-info-details">
                                             <h3>Location</h3>
-                                            <p>Chennai, Tamil Nadu, India</p>
+                                            <p>No 5/23 , perumal kovil street, thideer nagar,<br></br> maduravoyal, chennai - 600095, Tamil Nadu, India</p>
                                         </div>
                                     </div>
                                 </div>

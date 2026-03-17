@@ -1,0 +1,334 @@
+.add-blog-page {
+    min-height: 100vh;
+    background: #f8f9fb;
+    color: #1a1a1b;
+    padding-top: 100px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.add-blog-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+@media (max-width: 1200px) {
+    .add-blog-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Editor Section */
+.blog-editor {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 24px;
+    padding: 2.5rem;
+    position: sticky;
+    top: 100px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+}
+
+/* Custom Scrollbar for Editor */
+.blog-editor::-webkit-scrollbar {
+    width: 6px;
+}
+.blog-editor::-webkit-scrollbar-track {
+    background: transparent;
+}
+.blog-editor::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.editor-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: #000;
+}
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #666;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.premium-input {
+    width: 100%;
+    background: #f8f9fb;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    color: #1a1a1a;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.premium-input:focus {
+    outline: none;
+    border-color: #ff6a3d;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(255, 106, 61, 0.1);
+}
+
+.premium-textarea {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+/* Media Upload */
+.media-upload-zone {
+    border: 2px dashed rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #f8f9fb;
+}
+
+.media-upload-zone:hover {
+    border-color: #ff6a3d;
+    background: rgba(255, 106, 61, 0.02);
+}
+
+.upload-icon {
+    color: #ff6a3d;
+    margin-bottom: 1rem;
+}
+
+/* Section Blocks */
+.section-block {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.section-number {
+    background: #ff6a3d;
+    color: #fff;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+/* TOC Dynamic List */
+.remove-btn {
+    background: rgba(255, 82, 82, 0.05);
+    color: #ff5252;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.remove-btn:hover {
+    background: #ff5252;
+    color: #fff;
+}
+
+.add-section-btn {
+    background: #fff;
+    color: #ff6a3d;
+    border: 1px dashed #ff6a3d;
+    border-radius: 12px;
+    padding: 1rem;
+    width: 100%;
+    cursor: pointer;
+    font-weight: 700;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.add-section-btn:hover {
+    background: #ff6a3d;
+    color: #fff;
+}
+
+/* Preview Section */
+.blog-preview {
+    padding: 0;
+}
+
+.preview-card {
+    background: #ffffff;
+    border-radius: 32px;
+    overflow: hidden;
+    color: #1a1a1a;
+    box-shadow: 0 40px 100px -20px rgba(0,0,0,0.1);
+}
+
+.preview-media {
+    width: 100%;
+    height: 500px;
+    background: #f0f2f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.preview-media img, 
+.preview-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.preview-content {
+    padding: 4rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.preview-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 3rem;
+    color: #000;
+    letter-spacing: -0.02em;
+}
+
+.preview-toc {
+    background: #f8f9fb;
+    border-radius: 24px;
+    padding: 2.5rem;
+    margin-bottom: 4rem;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.preview-toc-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: #000;
+}
+
+.preview-toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.preview-toc-list li a {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    color: #444;
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.2s ease;
+}
+
+.preview-toc-list li a:hover {
+    color: #ff6a3d;
+    padding-left: 10px;
+}
+
+.preview-toc-list li:last-child a {
+    border-bottom: none;
+}
+
+.preview-toc-list li a::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border: 2px solid #ff6a3d;
+    border-radius: 50%;
+}
+
+/* Blog Content Styles */
+.preview-section {
+    margin-bottom: 5rem;
+    scroll-margin-top: 100px;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: #000;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.section-title::before {
+    content: "";
+    width: 40px;
+    height: 4px;
+    background: #ff6a3d;
+    border-radius: 2px;
+}
+
+.section-body {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #444;
+    white-space: pre-wrap;
+}
+
+.publish-actions {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.publish-btn {
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    padding: 1.25rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.publish-btn:hover {
+    background: #ff6a3d;
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(255, 106, 61, 0.2);
+}

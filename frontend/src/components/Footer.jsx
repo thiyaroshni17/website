@@ -39,9 +39,9 @@ const Footer = () => {
                         <h4 className="ft-heading">Quick Links</h4>
                         <ul className="ft-list">
                             <li><Link to="/">Home</Link></li>
-                            <li><Link to="/products">Products</Link></li>
                             <li><Link to="/services">Services</Link></li>
-                            <li><Link to="/solutions">Solutions</Link></li>
+                            <li><Link to="/products">Products</Link></li>
+                            <li><Link to="/about">About</Link></li>
                             <li><Link to="/contact">Contact</Link></li>
                         </ul>
                     </div>
@@ -70,7 +70,7 @@ const Footer = () => {
                             </li>
                             <li>
                                 <MapPin size={16} className="ft-icon min-w" />
-                                <span>14/16, N.R. Road, 2nd Cross, Town Hall, Bangalore 560002</span>
+                                <span>No 5/23 , perumal kovil street, thideer nagar, maduravoyal, chennai - 600095, Tamil Nadu, India</span>
                             </li>
                         </ul>
                     </div>

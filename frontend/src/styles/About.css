@@ -1,0 +1,761 @@
+/* About.css - Orange Gradient Theme */
+.about-page {
+    background-color: #ffffff;
+    color: #1a1a1a;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Hero Section */
+.about-hero {
+    padding: 150px 0 80px;
+}
+
+.about-hero-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+}
+
+.about-hero-image-wrapper {
+    position: relative;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px;
+}
+
+.about-circle-bg {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, #ec650a 0%, #ff9d2e 100%);
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0.95;
+    box-shadow: 0 30px 60px rgba(236, 101, 10, 0.2);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.about-hero-img.cutout-style {
+    position: absolute;
+    z-index: 2;
+    width: 520px;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+    left: 50%;
+    bottom: calc(50% - 200px);
+    /* Anchor bottom of image to bottom of 400px circle */
+    transform: translateX(calc(-50% - 20px));
+    transition: all 0.4s ease;
+
+    /* 
+       Advanced Masking:
+       1. Bottom part: A circle of radius 200px matching the background circle.
+          The image is shifted 20px left, so the mask circle must be shifted 
+          20px right relative to the image center to stay aligned with the back-circle.
+       2. Top part: A solid rectangle to allow the head to pop out.
+    */
+    -webkit-mask-image:
+        radial-gradient(circle at calc(50% + 20px) calc(100% - 200px), black 200px, transparent 201px),
+        linear-gradient(to top, transparent 200px, black 200px);
+    -webkit-mask-composite: source-over;
+    mask-image:
+        radial-gradient(circle at calc(50% + 20px) calc(100% - 200px), black 200px, transparent 201px),
+        linear-gradient(to top, transparent 200px, black 200px);
+    mask-composite: add;
+}
+
+.about-hero-image-wrapper:hover .about-hero-img.cutout-style {
+    transform: translateX(calc(-50% - 20px)) scale(1.05);
+}
+
+.about-floating-badge {
+    position: absolute;
+    bottom: 20%;
+    right: 0;
+    background: #ffffff;
+    padding: 14px 24px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    z-index: 3;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border: 1px solid rgba(236, 101, 10, 0.1);
+}
+
+.about-hero-content {
+    flex: 1.2;
+}
+
+.about-tagline {
+    color: #ec650a;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.about-hero-content h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    background: linear-gradient(to top, #000000 50%, #797979 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.about-hero-content h1 span {
+    background: linear-gradient(135deg, #ec650a 0%, #ff9d2e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    font-size: 3rem;
+}
+
+.about-hero-content p {
+    font-size: 1.15rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    max-width: 550px;
+}
+
+.about-cta-btn {
+    padding: 18px 45px;
+    background: linear-gradient(135deg, #ec650a 0%, #ff9d2e 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 25px rgba(236, 101, 10, 0.3);
+    display: flex;
+    align-items: center;
+}
+
+.about-cta-btn:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(236, 101, 10, 0.4);
+}
+
+/* Featured Section */
+.about-featured {
+    padding: 100px 0;
+    background: #fafafa;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.about-featured h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-top: 10px;
+    color: #000;
+}
+
+.about-features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.about-feature-card {
+    background: #ffffff;
+    padding: 50px 40px;
+    border-radius: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+    border: 1px solid #f0f0f0;
+    transition: all 0.4s ease;
+}
+
+.about-feature-card:hover {
+    transform: translateY(-12px);
+    border-color: #ec650a44;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06);
+}
+
+.about-feature-card.highlighted {
+    background: linear-gradient(135deg, #ec650a 0%, #ff9d2e 100%);
+    color: #ffffff;
+    border: none;
+}
+
+.about-feature-card.highlighted .about-card-icon {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+.about-feature-card.highlighted h3,
+.about-feature-card.highlighted p,
+.about-feature-card.highlighted .card-link {
+    color: #ffffff;
+}
+
+.about-card-icon {
+    width: 64px;
+    height: 64px;
+    background: #fff5ee;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ec650a;
+    margin-bottom: 30px;
+}
+
+.about-feature-card h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.about-feature-card p {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.card-link {
+    background: none;
+    border: none;
+    color: #ec650a;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: gap 0.3s ease;
+}
+
+.card-link:hover {
+    gap: 12px;
+}
+
+/* Banner Section */
+.about-banner-container {
+    padding: 60px 0;
+
+}
+
+.about-banner {
+    background: #ffffff;
+    border-radius: 40px;
+    padding: 0px 80px;
+    /* Reduced vertical padding */
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    color: #1a1a1a;
+    position: relative;
+    overflow: visible;
+    /* Crucial: let the image pop out the top */
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+    min-height: 320px;
+    /* Explicit height to control proportions */
+}
+
+.about-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: 40px;
+    background-image: radial-gradient(circle at center,
+            transparent 0%,
+            #ec650a 5%,
+            #ff9d2e 10%,
+            #ec650a 15%,
+            transparent 20%);
+    background-size: 300% 300%;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: shine-border-animation 8s infinite linear;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.about-banner-content {
+    flex: 1.2;
+
+}
+
+.about-banner-content h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    background: linear-gradient(to top, #000000 50%, #797979 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.about-banner-content h2 span {
+    background: linear-gradient(135deg, #ec650a 0%, #ff9d2e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    font-size: 2.5rem;
+}
+
+.about-banner-content p {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.about-banner-btn {
+    padding: 14px 35px;
+    background: linear-gradient(135deg, #ec650a 0%, #ff9d2e 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(236, 101, 10, 0.2);
+}
+
+.about-banner-btn:hover {
+    transform: scale(1.05);
+    background: #fdfdfd;
+}
+
+.about-banner-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.about-banner-img-wrapper {
+    position: relative;
+    width: 450px;
+    height: 400px;
+    /* Taller area for the larger image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-banner-img-bg {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, #ec650a 0%, #ff9d2e 100%);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.about-banner-img.cutout-style {
+    position: absolute;
+    bottom: 0px;
+    /* Sit at the bottom edge */
+    z-index: 2;
+    width: 480px;
+    /* Large scale */
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+    left: 50%;
+    transform: translateX(calc(-50% + 20px));
+    transition: all 0.4s ease;
+    /* The magic: Large height and bottom alignment makes head stick out the top */
+}
+
+.about-banner-img-wrapper:hover .about-banner-img.cutout-style {
+    transform: translateX(calc(-50% + 20px)) scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+
+    .about-hero-flex,
+    .about-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 50px;
+    }
+
+    .about-hero-content h1,
+    .about-banner-content h2 {
+        font-size: 3rem;
+    }
+
+    .about-hero-content p,
+    .about-banner-content p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .about-cta-btn,
+    .about-banner-btn {
+        margin: 0 auto;
+    }
+
+    .about-hero-image-wrapper,
+    .about-banner-image {
+        order: -1;
+    }
+
+    .about-features-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-hero-content h1,
+    .about-banner-content h2 {
+        font-size: 2.2rem;
+    }
+
+    .about-circle-bg {
+        width: 300px;
+        height: 300px;
+    }
+
+    .about-hero-img.cutout-style {
+        width: 280px;
+    }
+
+    .about-banner {
+        padding: 40px 20px;
+    }
+
+    .about-banner-img-wrapper {
+        width: 280px;
+        height: 280px;
+    }
+
+    .about-banner-img.cutout-style {
+        width: 320px;
+        bottom: -40px;
+    }
+}
+
+/* Floating Glass Boxes - Roshni Section (Hero) */
+.about-floating-glass-box {
+    position: absolute;
+    z-index: 10;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    animation: about-box-float 5s ease-in-out infinite;
+    white-space: nowrap;
+}
+
+.about-floating-glass-box.top-left {
+    top: 5%;
+    left: -10%;
+    animation-delay: 0s;
+}
+
+.about-floating-glass-box.top-right {
+    top: 20%;
+    right: -20%;
+    animation-delay: 1.5s;
+}
+
+.about-floating-glass-box.bottom-left {
+    bottom: 20%;
+    left: -20%;
+    animation-delay: 3s;
+}
+
+.about-floating-glass-box.bottom-right {
+    bottom: 5%;
+    right: 5%;
+    animation-delay: 0.8s;
+}
+
+/* Floating Glass Boxes - Dev Section (Banner) */
+.dev-about-floating-glass-box {
+    position: absolute;
+    z-index: 10;
+    padding: 10px 18px;
+    background: rgba(255, 106, 61, 0.1);
+    /* Subtle orange tint */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(236, 101, 10, 0.3);
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(236, 101, 10, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #000;
+    animation: about-box-float 6s ease-in-out infinite;
+    white-space: nowrap;
+}
+
+.dev-about-floating-glass-box.top-left {
+    top: -3%;
+    left: -0%;
+    animation-delay: 0.5s;
+}
+
+.dev-about-floating-glass-box.top-right {
+    top: 10%;
+    right: -10%;
+    animation-delay: 2s;
+}
+
+.dev-about-floating-glass-box.bottom-left {
+    bottom: 25%;
+    left: -10%;
+    animation-delay: 3.5s;
+}
+
+.dev-about-floating-glass-box.bottom-right {
+    bottom: 8%;
+    right: -10%;
+    animation-delay: 1.2s;
+}
+
+.about-glass-icon {
+    color: #ec650a;
+}
+
+@keyframes about-box-float {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-15px) scale(1.02);
+    }
+}
+
+@keyframes shine-border-animation {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+/* Responsive adjustments for floating boxes */
+@media (max-width: 1024px) {
+
+    .about-floating-glass-box,
+    .dev-about-floating-glass-box {
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        margin: 10px auto;
+        width: fit-content;
+        animation: none;
+    }
+}
+
+/* Story Section */
+.about-story-section {
+    padding: 100px 0;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-story-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.about-story-main h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    background: linear-gradient(to top, #000000 50%, #797979 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.about-story-main h2 span {
+    background: linear-gradient(135deg, #ec650a 0%, #ff9d2e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+}
+
+.about-story-main p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.about-philosophy-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.about-philosophy-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 30px;
+    background: #fff;
+    border: 1px solid transparent;
+    /* Hide default border since we use shine */
+    border-radius: 20px;
+    position: relative;
+    overflow: visible;
+}
+
+.about-philosophy-card::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    padding: 1px;
+    border-radius: 20px;
+    background-image: radial-gradient(circle at center,
+            transparent 0%,
+            #ec650a 5%,
+            #ff9d2e 10%,
+            #ec650a 15%,
+            transparent 20%);
+    background-size: 300% 300%;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: shine-border-animation 6s infinite linear;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 1;
+    /* Always visible */
+}
+
+.phil-icon-wrapper,
+.phil-content {
+    position: relative;
+    z-index: 2;
+}
+
+.phil-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background: rgba(236, 101, 10, 0.1);
+    color: #ec650a;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.phil-content h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+}
+
+.phil-content p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+    .about-story-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .about-story-main h2 {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-story-section {
+        padding: 60px 0;
+    }
+
+    .about-story-main h2 {
+        font-size: 2.2rem;
+    }
+
+    .about-philosophy-card {
+        padding: 20px;
+    }
+}

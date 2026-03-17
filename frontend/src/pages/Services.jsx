@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
-import { Instagram, Linkedin, Facebook } from 'lucide-react';
+import { Instagram, Linkedin, Facebook, Monitor, Cpu, Database, Cloud, MessageSquare, Shield, Settings, PenTool, CheckCircle, Smartphone, BarChart, Server, Layout, Activity, Repeat } from 'lucide-react';
 import '../styles/Services.css';
 import '../styles/Home.css';
 
@@ -12,36 +12,86 @@ const Services = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    const serviceCategories = [
+        {
+            title: "Development Suite",
+            icon: <Monitor className="category-icon" />,
+            services: [
+                { name: "Web Application Development", desc: "Custom websites, dashboards, and enterprise portals.", icon: <Layout size={20} /> },
+                { name: "Mobile App Development", desc: "Native and cross-platform Android/iOS applications.", icon: <Smartphone size={20} /> },
+                { name: "Custom Software Solutions", desc: "Tailor-made software built for your unique needs.", icon: <Settings size={20} /> },
+                { name: "SaaS Product Development", desc: "Scalable software-as-a-service platforms.", icon: <Cloud size={20} /> },
+                { name: "API Development & Integration", desc: "Seamless connectivity between your systems.", icon: <Repeat size={20} /> }
+            ]
+        },
+        {
+            title: "AI & Automation",
+            icon: <Cpu className="category-icon" />,
+            services: [
+                { name: "AI Supported Automation", desc: "Intelligent systems to streamline operations.", icon: <Activity size={20} /> },
+                { name: "Workflow Automation", desc: "Eliminating manual tasks for peak efficiency.", icon: <Repeat size={20} /> },
+                { name: "Conversational AI", desc: "Advanced Chatbots, WhatsApp & SMS agents.", icon: <MessageSquare size={20} /> },
+                { name: "AI Software Solutions", desc: "Next-gen software powered by Artificial Intelligence.", icon: <Cpu size={20} /> }
+            ]
+        },
+        {
+            title: "Business Intelligence",
+            icon: <Database className="category-icon" />,
+            services: [
+                { name: "Data Analytics & Visualization", desc: "Transforming raw data into actionable insights.", icon: <BarChart size={20} /> },
+                { name: "Business Intelligence Systems", desc: "Strategic data tools for informed decisions.", icon: <Activity size={20} /> },
+                { name: "Enterprise Software (ERP/CRM)", desc: "Robust systems to manage your entire business.", icon: <Server size={20} /> },
+                { name: "Secured Payment Portals", desc: "Safe and reliable financial transaction systems.", icon: <Shield size={20} /> }
+            ]
+        },
+        {
+            title: "Specialized Services",
+            icon: <Settings className="category-icon" />,
+            services: [
+                { name: "Cloud Services", desc: "Securely move and manage systems in the cloud.", icon: <Cloud size={20} /> },
+                { name: "UI/UX Designing", desc: "Crafting intuitive and stunning user experiences.", icon: <PenTool size={20} /> },
+                { name: "Quality Assurance & Testing", desc: "Ensuring your software is bug-free and reliable.", icon: <CheckCircle size={20} /> },
+                { name: "Maintenance & Support", desc: "Continuous updates and technical assistance.", icon: <Settings size={20} /> },
+                { name: "Attendance Software & Devices", desc: "Modern workforce management solutions.", icon: <Activity size={20} /> }
+            ]
+        }
+    ];
+
+    const technologies = [
+        "Artificial Intelligence (AI)", "Machine Learning (ML)", "Deep Learning (DL)",
+        "Full Stack Development", "CRUD Operations", "Business Analytics",
+        "Natural Language Processing", "Automation Systems", "Database Management",
+        "Cloud & API Integration"
+    ];
+
     return (
         <div className="sv-page-container">
-            <header className="sv-header">
-                <nav className="navbar">
-                    <div className="logo">
-                        <img src="/logo.png" alt="Escapeloop Logo" className="logo-img" />
-                        <span className="logo-name">
-                            <span className="logo-highlight">esc</span>
-                            <span className="logo-secondary">apeloop</span>
-                        </span>
-                    </div>
+            <nav className="navbar on-white">
+                <div className="logo">
+                    <img src="/logo.png" alt="Escapeloop Logo" className="logo-img" />
+                    <span className="logo-name">
+                        <span className="logo-highlight">esc</span>
+                        <span className="logo-secondary">apeloop</span>
+                    </span>
+                </div>
 
-                    <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
+                <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
 
-                    <div className={`nav-backdrop ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}></div>
+                <div className={`nav-backdrop ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}></div>
 
-                    <ul className={`nav-links ${isMenuOpen ? 'active' : ''} on-white`}>
-                        <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
-                        <li><Link to="/services" onClick={() => setIsMenuOpen(false)} style={{ color: '#ff6a3d', fontWeight: '600' }}>Services</Link></li>
-                        <li><Link to="/products" onClick={() => setIsMenuOpen(false)}>Products</Link></li>
-                        <li><a href="/#blog" onClick={() => setIsMenuOpen(false)}>Blog</a></li>
-                        <li><a href="/#about" onClick={() => setIsMenuOpen(false)}>About</a></li>
-                        <li><Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
-                    </ul>
-                </nav>
-            </header>
+                <ul className={`nav-links ${isMenuOpen ? 'active' : ''} on-white`}>
+                    <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
+                    <li><Link to="/services" onClick={() => setIsMenuOpen(false)} style={{ color: '#ff6a3d', fontWeight: '600' }}>Services</Link></li>
+                    <li><Link to="/products" onClick={() => setIsMenuOpen(false)}>Products</Link></li>
+                    <li><Link to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link></li>
+                    <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
+                    <li><Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
+                </ul>
+            </nav>
 
             <main className="sv-main-content">
                 <div className="sv-spacer-top"></div>
@@ -61,9 +111,43 @@ const Services = () => {
                     </div>
                 </section>
 
-                <div className="sv-spacer-bottom"></div>
+                <section className="services-grid-section">
+                    <div className="services-container">
+                        <div className="section-header">
+                            <h2 className="section-main-title">Comprehensive Solutions</h2>
+                            <p className="section-subtitle">We blend cutting-edge technology with creative design to build the future of business.</p>
+                        </div>
 
-                {/* Additional services content can be added here */}
+                        {serviceCategories.map((category, idx) => (
+                            <div key={idx} className="service-category-group">
+                                <div className="category-header">
+                                    {category.icon}
+                                    <h3>{category.title}</h3>
+                                </div>
+                                <div className="services-list-grid">
+                                    {category.services.map((service, sIdx) => (
+                                        <div key={sIdx} className="service-premium-card">
+                                            <div className="service-card-icon">{service.icon}</div>
+                                            <h4>{service.name}</h4>
+                                            <p>{service.desc}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                <section className="technologies-section">
+                    <div className="tech-container">
+                        <h2 className="tech-title">Core Technology Stack</h2>
+                        <div className="tech-pills">
+                            {technologies.map((tech, idx) => (
+                                <span key={idx} className="tech-pill">{tech}</span>
+                            ))}
+                        </div>
+                    </div>
+                </section>
 
                 <section className="contact-section white-bg" id="contact">
                     <div className="grid-perspective">
@@ -139,6 +223,9 @@ const Services = () => {
                                 </div>
                                 <div className="form-group">
                                     <input type="email" placeholder="Email" />
+                                </div>
+                                <div className="form-group">
+                                    <input type="email" placeholder="Company" />
                                 </div>
                                 <div className="form-group">
                                     <textarea rows="4" placeholder="Tell us about your project..."></textarea>
