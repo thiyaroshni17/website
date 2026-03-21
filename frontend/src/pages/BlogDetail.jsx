@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import { ArrowLeft, Calendar, User, Clock, Share2, BookOpen, ChevronRight, Instagram, Linkedin, Facebook, Youtube, Twitter, MessageCircle, AtSign } from 'lucide-react';
+import { ArrowLeft, Calendar, User, Clock, Share2, BookOpen, ChevronRight, Instagram, Linkedin, Facebook, Phone } from 'lucide-react';
 import Footer from '../components/Footer';
 import '../styles/Home.css';
 import '../styles/BlogDetail.css';
+import { useModal } from '../context/ModalContext';
 
 const BlogDetail = () => {
     const { id } = useParams();
     const [blog, setBlog] = useState(null);
     const [loading, setLoading] = useState(true);
+    const { openModal } = useModal();
     const [activeSection, setActiveSection] = useState('');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -99,8 +101,11 @@ const BlogDetail = () => {
                         <span className="logo-secondary">apeloop</span>
                     </span>
                 </div>
-                <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
-                    <span></span><span></span><span></span>
+                <div className="nav-right-container">
+                    <button className="header-call-btn" onClick={openModal}><Phone size={18} stroke="url(#orange-grad)" /> <span className="header-call-text">Schedule a Call</span></button>
+                    <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+                        <span></span><span></span><span></span>
+                    </div>
                 </div>
                 <div className={`nav-backdrop ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}></div>
                 <ul className={`nav-links ${isMenuOpen ? 'active' : ''} on-white`}>
@@ -123,7 +128,7 @@ const BlogDetail = () => {
                         )}
                         <div className="hero-overlay"></div>
                     </div>
-                    
+
                     <div className="hero-text-container">
                         <Link to="/blog" className="breadcrumb">
                             <ArrowLeft size={16} /> The Journal
@@ -154,7 +159,7 @@ const BlogDetail = () => {
                                 <ul className="toc-list">
                                     {blog.sections?.map((section) => (
                                         <li key={section.id}>
-                                            <button 
+                                            <button
                                                 className={`toc-link ${activeSection === section.id ? 'active' : ''}`}
                                                 onClick={() => scrollToSection(section.id)}
                                             >
@@ -165,18 +170,26 @@ const BlogDetail = () => {
                                     ))}
                                 </ul>
                             </div>
-                            
+
                             <div className="sidebar-card share-card">
                                 <h3>Spread the Word</h3>
                                 <div className="share-grid">
-                                    <button className="share-icon-btn instagram" title="Share on Instagram"><Instagram size={20} stroke="#444" /></button>
-                                    <button className="share-icon-btn linkedin" title="Share on LinkedIn"><Linkedin size={20} stroke="#444" /></button>
-                                    <button className="share-icon-btn whatsapp" title="Share on WhatsApp"><MessageCircle size={20} stroke="#444" /></button>
-                                    <button className="share-icon-btn youtube" title="Watch on YouTube"><Youtube size={20} stroke="#444" /></button>
-                                    <button className="share-icon-btn twitter" title="Share on Twitter"><Twitter size={20} stroke="#444" /></button>
-                                    <button className="share-icon-btn threads" title="Share on Threads"><AtSign size={20} stroke="#444" /></button>
-                                    <button className="share-icon-btn facebook" title="Share on Facebook"><Facebook size={20} stroke="#444" /></button>
-                                    <button className="share-icon-btn generic" title="More Sharing Options"><Share2 size={20} stroke="#444" /></button>
+                                    <a href="#" className="blog-share-btn instagram" title="Share on Instagram">
+                                        <Instagram size={20} />
+                                        <span className="sr-only">Instagram</span>
+                                    </a>
+                                    <a href="#" className="blog-share-btn linkedin" title="Share on LinkedIn">
+                                        <Linkedin size={20} />
+                                        <span className="sr-only">LinkedIn</span>
+                                    </a>
+                                    <a href="#" className="blog-share-btn facebook" title="Share on Facebook">
+                                        <Facebook size={20} />
+                                        <span className="sr-only">Facebook</span>
+                                    </a>
+                                    <a href="#" className="blog-share-btn generic" title="More Sharing Options">
+                                        <Share2 size={20} />
+                                        <span className="sr-only">Share</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>

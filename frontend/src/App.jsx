@@ -13,10 +13,12 @@ import Blog from './pages/Blog'
 import Addblog from './pages/Addblog'
 import BlogDetail from './pages/BlogDetail'
 import ScrollToTop from './components/ScrollToTop'
+import { ModalProvider } from './context/ModalContext'
+import CallModal from './components/CallModal'
 
 const App = () => {
   return (
-    <div>
+    <ModalProvider>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -32,7 +34,8 @@ const App = () => {
         <Route path="/refund" element={<Refund />} />
       </Routes>
       <Chatbot />
-    </div>
+      <CallModal />
+    </ModalProvider>
   )
 }
 

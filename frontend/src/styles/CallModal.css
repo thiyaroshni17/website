@@ -1,0 +1,320 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 30000;
+    padding: 20px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-container {
+    background: #ffffff !important;
+    width: 100%;
+    max-width: 480px;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: visible;
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Shine Border Animation - Restricted to container */
+.modal-container::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    padding: 1px;
+    border-radius: 12px;
+    background-image: radial-gradient(circle at center,
+            transparent 0%,
+            #ec650a 5%,
+            #ff9d2e 10%,
+            #ec650a 15%,
+            transparent 20%);
+    background-size: 300% 300%;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: shine-border-animation 8s infinite linear;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes shine-border-animation {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important; /* Override global padding from index.css */
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #000000 !important; /* Black for maximum visibility */
+    transition: all 0.2s ease;
+    z-index: 99999 !important; /* Extremely high z-index */
+    box-shadow: none !important;
+}
+
+.modal-close-btn:hover {
+    color: #ec650a !important;
+    transform: scale(1.2);
+}
+
+.modal-content {
+    padding: 32px 28px;
+    position: relative;
+    z-index: 2;
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.modal-icon-badge {
+    width: 52px;
+    height: 52px;
+    background: rgba(236, 101, 10, 0.08);
+    color: #ec650a;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+}
+
+.modal-header h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.modal-header p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    color: #ec650a;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.input-with-icon input,
+.input-with-icon textarea {
+    width: 100%;
+    padding: 12px 14px 12px 44px;
+    background: rgba(0, 0, 0, 0.03) !important; /* Glass effect on inputs */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    color: #1a1a1a;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.input-with-icon textarea {
+    resize: none;
+}
+
+.textarea-icon .input-icon {
+    top: 14px;
+}
+
+.input-with-icon input:focus,
+.input-with-icon textarea:focus {
+    background: #ffffff !important;
+    border-color: #ec650a;
+    box-shadow: 0 0 0 4px rgba(236, 101, 10, 0.05);
+    outline: none;
+}
+
+/* Matching the contact section submit button exactly */
+.modal-submit-btn {
+    margin-top: 24px; /* Adjusted to give more space */
+    padding: 10px 15px;
+    width: 200px; /* Reduced width as requested */
+    align-self: center; /* Centered as in contact section */
+    background: rgba(255, 255, 255, 0.4) !important;
+    border: 1px solid transparent !important;
+    border-radius: 8px !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: #ec650a !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: visible;
+    z-index: 10;
+}
+
+.modal-submit-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(135deg, #ec650a, #ff9d2e);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.modal-submit-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 252, 252, 0.15) !important;
+    box-shadow: 0 6px 15px rgba(236, 101, 10, 0.2);
+}
+
+.modal-submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Success State */
+.modal-success {
+    padding: 40px 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.success-animation {
+    margin-bottom: 20px;
+    animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.success-icon {
+    color: #ec650a;
+}
+
+.modal-success h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.modal-success p {
+    color: #666;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+}
+
+.success-loader {
+    width: 100%;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.success-loader::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background: #ec650a;
+    animation: loadingBar 3s linear forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+@keyframes loadingBar {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@media (max-width: 480px) {
+    .modal-close-btn {
+        top: 10px;
+        right: 10px;
+    }
+    .modal-content {
+        padding: 24px 20px;
+    }
+    .modal-header h2 {
+        font-size: 1.5rem;
+    }
+}

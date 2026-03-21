@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI/UX Design Process</title>
+    <style>
+        :root {
+            --primary-orange: #ff6600;
+            --light-orange: #fff5ed;
+            --text-dark: #333;
+            --text-muted: #666;
+            --line-color: #ddd;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 40px 20px;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        header {
+            margin-bottom: 60px;
+            border-left: 5px solid var(--primary-orange);
+            padding-left: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        /* Timeline Logic */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        /* The vertical curved line effect */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--line-color);
+            transform: translateX(-50%);
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 80px;
+            width: 100%;
+            position: relative;
+        }
+
+        .step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .content-box {
+            width: 40%;
+        }
+
+        .content-box h3 {
+            color: #000;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .content-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .content-box li {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .content-box li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--primary-orange);
+            font-weight: bold;
+        }
+
+        /* Icon Styling */
+        .icon-wrapper {
+            width: 70px;
+            height: 70px;
+            background: #fff;
+            border: 2px solid var(--primary-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(255, 102, 0, 0.2);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .icon-wrapper svg {
+            width: 35px;
+            height: 35px;
+            fill: var(--primary-orange);
+        }
+
+        /* Decorative Footer Circle */
+        .bg-decoration {
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            border: 40px solid var(--light-orange);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before { left: 20px; }
+            .step, .step:nth-child(even) { flex-direction: column; align-items: flex-start; }
+            .content-box { width: 80%; margin-left: 60px; margin-bottom: 30px; }
+            .icon-wrapper { left: 20px; transform: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" style="position: relative; overflow: hidden;">
+    <header>
+        <h1>Process for Website UI/UX<br>Design Services</h1>
+    </header>
+
+    <div class="timeline">
+        
+        <div class="step">
+            <div class="content-box"></div> <div class="icon-wrapper">
+                <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            </div>
+            <div class="content-box">
+                <h3>Design Interview</h3>
+                <ul>
+                    <li>Assessing the client's needs & goals.</li>
+                    <li>Setting up the strategies for creating web design layout.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="content-box">
+                <h3>Design Presentation</h3>
+                <ul>
+                    <li>Preparing guidelines.</li>
+                    <li>Determining & finalizing the graphical theme of website.</li>
+                </ul>
+            </div>
+            <div class="icon-wrapper">
+                <svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM5 15h14l-4.5-6L11 14l-2.5-3z"/></svg>
+            </div>
+            <div class="content-box"></div>
+        </div>
+
+        <div class="step">
+            <div class="content-box"></div>
+            <div class="icon-wrapper">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            </div>
+            <div class="content-box">
+                <h3>Website Content</h3>
+                <ul>
+                    <li>Creating relevant content for product specification.</li>
+                    <li>Adding appropriate images to showcase the products.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="content-box">
+                <h3>Website Building & Launch</h3>
+                <ul>
+                    <li>Configuring & setup testing methods to minimize errors.</li>
+                    <li>Launching the website in accordance with the objective.</li>
+                </ul>
+            </div>
+            <div class="icon-wrapper">
+                <svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
+            </div>
+            <div class="content-box"></div>
+        </div>
+
+        <div class="step">
+            <div class="content-box"></div>
+            <div class="icon-wrapper">
+                <svg viewBox="0 0 24 24"><path d="M10 20h4V4h-4v16zm-6 0h4v-8H4v8zM16 9v11h4V9h-4z"/></svg>
+            </div>
+            <div class="content-box">
+                <h3>Traffic Reports</h3>
+                <ul>
+                    <li>Providing website traffic reports (visitors, bounce rates).</li>
+                    <li>Analyzing most visited website pages.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="content-box">
+                <h3>Payment Gateway</h3>
+                <ul>
+                    <li>Integrating payment gateway selection.</li>
+                    <li>Ensuring secure online payment selection.</li>
+                </ul>
+            </div>
+            <div class="icon-wrapper">
+                <svg viewBox="0 0 24 24"><path d="M21 7H3c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm0 12H3V9h18v10zM7 16h7v2H7z"/></svg>
+            </div>
+            <div class="content-box"></div>
+        </div>
+
+    </div>
+
+    <div class="bg-decoration"></div>
+</div>
+
+</body>
+</html>

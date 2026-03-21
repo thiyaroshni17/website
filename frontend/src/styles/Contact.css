@@ -12,10 +12,19 @@
     left: 0;
     width: 100%;
     z-index: 1000;
+    background: transparent !important;
+}
+
+.ct-header .navbar.on-white {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
 }
 
 .ct-main-content {
-    padding-top: 80px;
+    /* Padding-top removed to allow hero grid to cover header area */
+    padding-top: 0;
 }
 
 .ct-container {
@@ -29,10 +38,11 @@
 /* Hero Section */
 .ct-hero-section {
     position: relative;
-    padding: 120px 0 80px;
+    padding: 200px 0 80px; /* Increased top padding to push content below transparent header */
     background: #ffffff;
     overflow: hidden;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    margin-top: -0px; /* Ensure it starts at the very top */
 }
 
 /* Grid Animation Styles */
@@ -75,8 +85,13 @@
 }
 
 @keyframes grid-travel {
-    0% { transform: translateY(0); }
-    100% { transform: translate3d(0, 60px, 0); }
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translate3d(0, 60px, 0);
+    }
 }
 
 .horizon-fade {
@@ -269,9 +284,17 @@
 }
 
 .ct-info-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.05);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
     border-color: #ec650a44;
+}
+
+.ct-info-card:hover h3,
+.ct-info-card:hover p,
+.ct-info-card:hover .ct-link,
+.ct-info-card:hover .ct-icon,
+.ct-info-card:hover span {
+    color: #ec650a !important;
 }
 
 .ct-icon-box {
@@ -342,13 +365,16 @@
     align-items: center;
     justify-content: center;
     gap: 12px;
-    background: #f5f5f5;
-    color: #1a1a1a;
+    background: #f0f0f0;
+    /* Slightly darker than #f5f5f5 */
+    color: black;
     transition: all 0.3s ease;
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
-    border: 1px solid transparent;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    opacity: 0.95;
+    /* Increased opacity from default or any lower value */
 }
 
 .ct-social-btn:hover {
@@ -376,21 +402,35 @@
     animation: ctFadeUp 1s ease forwards;
 }
 
-.delay-1 { animation-delay: 0.2s; }
-.delay-2 { animation-delay: 0.4s; }
-.delay-3 { animation-delay: 0.6s; }
+.delay-1 {
+    animation-delay: 0.2s;
+}
+
+.delay-2 {
+    animation-delay: 0.4s;
+}
+
+.delay-3 {
+    animation-delay: 0.6s;
+}
 
 @keyframes ctFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes ctFadeUp {
-    from { 
+    from {
         opacity: 0;
         transform: translateY(30px);
     }
-    to { 
+
+    to {
         opacity: 1;
         transform: translateY(0);
     }
@@ -411,7 +451,7 @@
         grid-template-columns: 1fr;
         gap: 60px;
     }
-    
+
     .ct-hero-text h1 {
         font-size: 4rem;
     }
@@ -421,15 +461,15 @@
     .ct-info-cards {
         grid-template-columns: 1fr;
     }
-    
+
     .ct-hero-text h1 {
         font-size: 3rem;
     }
-    
+
     .contact-form-card {
         padding: 32px;
     }
-    
+
     .ct-hero-section {
         padding: 60px 0 40px;
     }

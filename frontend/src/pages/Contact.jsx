@@ -1,10 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
-import { Mail, Phone, MapPin, MessageCircle, Send, Instagram, Linkedin, Facebook, ChevronRight } from 'lucide-react';
+import { Mail, Phone, MapPin, MessageCircle, Send, Instagram, Linkedin, Youtube, ChevronRight } from 'lucide-react';
 import '../styles/Contact.css';
+import { useModal } from '../context/ModalContext';
 
 const Contact = () => {
+    const { openModal } = useModal();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
@@ -57,10 +59,13 @@ const Contact = () => {
                         </span>
                     </div>
 
-                    <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                    <div className="nav-right-container">
+                        <button className="header-call-btn" onClick={openModal}><Phone size={18} stroke="url(#orange-grad)" /> <span className="header-call-text">Schedule a Call</span></button>
+                        <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                     </div>
 
                     <div className={`nav-backdrop ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}></div>
@@ -89,11 +94,11 @@ const Contact = () => {
                             <p className="ct-fade-in delay-1">Have a project in mind or want to automate your business? We're here to help you escape the loop with our best software solutions.</p>
                             
                             <div className="ct-hero-buttons ct-fade-up delay-2">
-                                <button className="ct-hero-btn secondary">
+                                <button className="ct-hero-btn secondary" onClick={openModal}>
                                     <Phone size={18} />
                                     Schedule a Call
                                 </button>
-                                <a href="https://wa.me/919342742656" target="_blank" rel="noopener noreferrer" className="ct-hero-btn secondary">
+                                <a href="https://wa.me/919342742656?text=Hi%2C%20can%20i%20get%20more%20info%20about%20your%20services%3F" target="_blank" rel="noopener noreferrer" className="ct-hero-btn secondary">
                                     <MessageCircle size={18} />
                                     WhatsApp Us
                                 </a>
@@ -111,17 +116,21 @@ const Contact = () => {
                                 <p className="ct-section-subtitle">Choose your preferred way to reach us. Our team is always ready to assist you.</p>
 
                                 <div className="ct-info-cards">
-                                    <div className="ct-info-card ct-fade-up">
+                                    <div className="ct-info-card ct-fade-up" onClick={() => window.open('https://mail.google.com/mail/?view=cm&fs=1&to=escapeloop25@gmail.com&body=HI%2C%20Can%20I%20get%20more%20info%20about%20services%3F', '_blank')} style={{ cursor: 'pointer' }}>
                                         <div className="ct-icon-box">
                                             <Mail className="ct-icon" />
                                         </div>
                                         <div className="ct-info-details">
                                             <h3>Email Us</h3>
-                                            <p>escapeloop25@gmail.com</p>
+                                            <p>
+                                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=escapeloop25@gmail.com&body=HI%2C%20Can%20I%20get%20more%20info%20about%20services%3F" target="_blank" rel="noopener noreferrer" className="ct-link">
+                                                    escapeloop25@gmail.com
+                                                </a>
+                                            </p>
                                         </div>
                                     </div>
 
-                                    <div className="ct-info-card ct-fade-up delay-1">
+                                    <div className="ct-info-card ct-fade-up delay-1" onClick={openModal} style={{ cursor: 'pointer' }}>
                                         <div className="ct-icon-box">
                                             <Phone className="ct-icon" />
                                         </div>
@@ -132,26 +141,28 @@ const Contact = () => {
                                         </div>
                                     </div>
 
-                                    <div className="ct-info-card ct-fade-up delay-2">
+                                    <div className="ct-info-card ct-fade-up delay-2" onClick={() => window.open('https://wa.me/919342742656?text=Hi%2C%20can%20i%20get%20more%20info%20about%20your%20services%3F', '_blank')} style={{ cursor: 'pointer' }}>
                                         <div className="ct-icon-box">
                                             <MessageCircle className="ct-icon" />
                                         </div>
                                         <div className="ct-info-details">
                                             <h3>WhatsApp</h3>
                                             <p>+91 9342742656</p>
-                                            <a href="https://wa.me/919342742656" target="_blank" rel="noopener noreferrer" className="ct-link">
+                                            <a href="https://wa.me/919342742656?text=Hi%2C%20can%20i%20get%20more%20info%20about%20your%20services%3F" target="_blank" rel="noopener noreferrer" className="ct-link">
                                                 Message Now <ChevronRight size={14} />
                                             </a>
                                         </div>
                                     </div>
 
-                                    <div className="ct-info-card ct-fade-up delay-3">
+                                    <div className="ct-info-card ct-fade-up delay-3" onClick={() => window.open('https://www.google.com/maps/search/?api=1&query=No+5%2F23+,+perumal+kovil+street,+thideer+nagar,+maduravoyal,+chennai+-+600095,+Tamil+Nadu,+India', '_blank')} style={{ cursor: 'pointer' }}>
                                         <div className="ct-icon-box">
                                             <MapPin className="ct-icon" />
                                         </div>
                                         <div className="ct-info-details">
                                             <h3>Location</h3>
-                                            <p>No 5/23 , perumal kovil street, thideer nagar,<br></br> maduravoyal, chennai - 600095, Tamil Nadu, India</p>
+                                            <a href="https://www.google.com/maps/search/?api=1&query=No+5%2F23+,+perumal+kovil+street,+thideer+nagar,+maduravoyal,+chennai+-+600095,+Tamil+Nadu,+India" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                                                No 5/23 , perumal kovil street, thideer nagar,<br></br> maduravoyal, chennai - 600095, Tamil Nadu, India
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -212,16 +223,16 @@ const Contact = () => {
                         <div className="ct-social-connect">
                             <h3>Follow Our Journey</h3>
                             <div className="ct-social-links">
-                                <a href="https://instagram.com/escapeloop" target="_blank" rel="noopener noreferrer" className="ct-social-btn instagram">
+                                <a href="https://www.instagram.com/escapeloop/" target="_blank" rel="noopener noreferrer" className="ct-social-btn instagram">
                                     <Instagram size={20} />
-                                    <span>escapeloop.ai</span>
-                                </a>
-                                <a href="https://linkedin.com/company/escapeloop" target="_blank" rel="noopener noreferrer" className="ct-social-btn linkedin">
-                                    <Linkedin size={20} />
                                     <span>escapeloop</span>
                                 </a>
-                                <a href="https://facebook.com/escapeloop" target="_blank" rel="noopener noreferrer" className="ct-social-btn facebook">
-                                    <Facebook size={20} />
+                                <a href="https://www.youtube.com/@escapeloop" target="_blank" rel="noopener noreferrer" className="ct-social-btn youtube">
+                                    <Youtube size={20} />
+                                    <span>escapeloop</span>
+                                </a>
+                                <a href="https://www.linkedin.com/company/escapeloop/" target="_blank" rel="noopener noreferrer" className="ct-social-btn linkedin">
+                                    <Linkedin size={20} />
                                     <span>escapeloop</span>
                                 </a>
                             </div>

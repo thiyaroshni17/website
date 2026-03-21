@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
-import { Instagram, Linkedin, Facebook, Star, Zap, Users, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Instagram, Linkedin, Facebook, Star, Zap, Users, ArrowRight, CheckCircle2, Brain, Phone, MessageCircle } from 'lucide-react';
 import '../styles/About.css';
 import '../styles/Home.css';
+import ContactSection from '../components/ContactSection';
+import { useModal } from '../context/ModalContext';
 
 const About = () => {
+    const { openModal } = useModal();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -19,8 +22,11 @@ const About = () => {
                         <span className="logo-secondary">apeloop</span>
                     </span>
                 </div>
-                <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
-                    <span></span><span></span><span></span>
+                <div className="nav-right-container">
+                    <button className="header-call-btn" onClick={openModal}><Phone size={18} stroke="url(#orange-grad)" /> <span className="header-call-text">Schedule a Call</span></button>
+                    <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+                        <span></span><span></span><span></span>
+                    </div>
                 </div>
                 <div className={`nav-backdrop ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}></div>
                 <ul className={`nav-links ${isMenuOpen ? 'active' : ''} on-white`}>
@@ -39,7 +45,7 @@ const About = () => {
                         <div className="about-hero-flex">
                             <div className="about-hero-image-wrapper">
                                 <div className="about-circle-bg"></div>
-                                
+
                                 {/* Floating Glass Boxes */}
                                 <div className="about-floating-glass-box top-left">
                                     <Zap size={18} className="about-glass-icon" />
@@ -53,27 +59,31 @@ const About = () => {
                                     <Star size={18} className="about-glass-icon" />
                                     <span>Workflow Engineer</span>
                                 </div>
+                                <div className="about-floating-glass-box bottom-right">
+                                    <Brain size={18} className="about-glass-icon" />
+                                    <span>Solution Architect</span>
+                                </div>
 
                                 <img src="/dev.png" alt="Dev" className="about-hero-img cutout-style" />
-                           
+
                             </div>
 
                             <div className="about-hero-content">
                                 <span className="about-tagline">ABOUT ME</span>
                                 <h1>J.DEVANAZHAGAR <span>CEO & Founder.</span></h1>
-                                
+
                                 <p>We help you escape the digital loop with cutting-edge automation and intelligent software solutions. Our goal is to empower your business with tools that drive high-growth and lasting success.</p>
-                                 <span className="about-tagline">QUALIFICATION</span>
-                                 <p style={{ fontSize: '1rem' ,marginBottom:'30px'}}>B.TECH CSE - DS & AI | WORKFLOW AUTOMATION | <br></br> AI ENGINEER</p>
-                                  <span className="about-tagline">OUR VISION</span>
-                                  <p>To empower businesses with intelligent, scalable, and user-centric digital solutions that drive measurable growth and long-term success.</p>
-                               
+                                <span className="about-tagline">QUALIFICATION</span>
+                                <p style={{ fontSize: '1rem', marginBottom: '30px' }}>B.TECH CSE - DS & AI | WORKFLOW AUTOMATION | <br></br> AI ENGINEER</p>
+                                <span className="about-tagline">OUR VISION</span>
+                                <p>To empower businesses with intelligent, scalable, and user-centric digital solutions that drive measurable growth and long-term success.</p>
+
                             </div>
                         </div>
                     </div>
                 </section>
 
-              
+
                 <section className="about-banner-container">
                     <div className="about-container">
                         <div className="about-banner">
@@ -81,12 +91,12 @@ const About = () => {
                                 <h2>G.ROSHNI <span>CEO & Founder.</span></h2>
                                 <p>Join the loop of excellence. Let us handle the complexity while you focus on what truly matters for your business growth.</p>
                                 <span className="about-tagline">QUALIFICATION</span>
-                                <p style={{ fontSize: '1rem' ,marginBottom:'30px'}}>B.TECH CSE - DS & AI | MERN Stack Developer | AI & ML Developer</p>
+                                <p style={{ fontSize: '1rem', marginBottom: '30px' }}>B.TECH CSE - DS & AI | MERN Stack Developer | AI & ML Developer</p>
                             </div>
                             <div className="about-banner-image">
                                 <div className="about-banner-img-wrapper">
                                     <div className="about-banner-img-bg"></div>
-                                    
+
                                     {/* Floating Glass Boxes */}
                                     <div className="dev-about-floating-glass-box top-left">
                                         <Zap size={18} className="about-glass-icon" />
@@ -112,6 +122,27 @@ const About = () => {
                     </div>
                 </section>
 
+                {/* Let's Connect CTA Section */}
+                <section className="about-connect-section">
+                    <div className="about-container">
+                        <div className="about-connect-content">
+                            <h2 className="about-connect-text">
+                                <span className="grey-highlight">Let's connect</span> and explore the world of <span className="orange-highlight">digital premium features</span> to <span className="grey-highlight">upscale your business</span>
+                            </h2>
+                            <div className="about-connect-buttons">
+                                <button className="cta-btn call-btn" onClick={openModal}>
+                                    <Phone size={18} />
+                                    Schedule a Call
+                                </button>
+                                <a href="https://wa.me/919342742656?text=Hi%2C%20can%20i%20get%20more%20info%20about%20your%20services%3F" target="_blank" rel="noopener noreferrer" className="cta-btn whatsapp-btn" style={{ textDecoration: 'none' }}>
+                                    <MessageCircle size={18} />
+                                    WhatsApp Us
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <section className="about-story-section">
                     <div className="about-container">
                         <div className="about-story-grid">
@@ -119,14 +150,14 @@ const About = () => {
                                 <span className="about-tagline">THE EVOLUTION</span>
                                 <h2>Building the Future, <span>One Loop at a Time.</span></h2>
                                 <p>
-                                    Escapeloop began as a passion project among ambitious students with a single, clear goal: 
-                                    to simplify the digital world. What started as a shared vision between classmates 
+                                    Escapeloop began as a passion project among ambitious students with a single, clear goal:
+                                    to simplify the digital world. What started as a shared vision between classmates
                                     quickly evolved into a powerhouse of workflow automation and creative development.
                                 </p>
                                 <p>
-                                    As students, we realized that the repetitive "loops" of daily operations were 
-                                    suffocating innovation. We built Escapeloop to be the escape hatch—empowering 
-                                    entrepreneurs and businesses to break free from manual tasks through intelligent 
+                                    As students, we realized that the repetitive "loops" of daily operations were
+                                    suffocating innovation. We built Escapeloop to be the escape hatch—empowering
+                                    entrepreneurs and businesses to break free from manual tasks through intelligent
                                     SaaS solutions and seamless AI integration.
                                 </p>
                             </div>
@@ -159,6 +190,7 @@ const About = () => {
                 </section>
             </main>
 
+            <ContactSection />
             <Footer />
         </div>
     );

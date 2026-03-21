@@ -2,11 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
-import { ArrowRight, Calendar, User, Clock, ChevronRight } from 'lucide-react';
+import { ArrowRight, Calendar, User, Clock, ChevronRight, Phone, MessageCircle } from 'lucide-react';
 import '../styles/Home.css';
 import '../styles/Blog.css';
+import ContactSection from '../components/ContactSection';
+import { useModal } from '../context/ModalContext';
 
 const Blog = () => {
+    const { openModal } = useModal();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeFilter, setActiveFilter] = useState('All');
 
@@ -69,8 +72,11 @@ const Blog = () => {
                         <span className="logo-secondary">apeloop</span>
                     </span>
                 </div>
-                <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
-                    <span></span><span></span><span></span>
+                <div className="nav-right-container">
+                    <button className="header-call-btn" onClick={openModal}><Phone size={18} stroke="url(#orange-grad)" /> <span className="header-call-text">Schedule a Call</span></button>
+                    <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+                        <span></span><span></span><span></span>
+                    </div>
                 </div>
                 <div className={`nav-backdrop ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}></div>
                 <ul className={`nav-links ${isMenuOpen ? 'active' : ''} on-white`}>
@@ -96,6 +102,16 @@ const Blog = () => {
                     </div>
 
                     <div className="blog-container" style={{ position: 'relative', zIndex: 30 }}>
+                        <div className="blog-cta-buttons">
+                            <button className="cta-btn call-btn" onClick={openModal}>
+                                <Phone size={18} />
+                                Schedule a Call
+                            </button>
+                            <a href="https://wa.me/919342742656?text=Hi%2C%20can%20i%20get%20more%20info%20about%20your%20services%3F" target="_blank" rel="noopener noreferrer" className="cta-btn whatsapp-btn" style={{ textDecoration: 'none' }}>
+                                <MessageCircle size={18} />
+                                WhatsApp Us
+                            </a>
+                        </div>
                         <div className="blog-filters">
                             {categories.map(cat => (
                                 <button 
@@ -155,6 +171,7 @@ const Blog = () => {
                 </div>
             </main>
 
+            <ContactSection />
             <Footer />
         </div>
     );

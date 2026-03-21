@@ -1,11 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
-import { UserCheck, LayoutDashboard, Brain, MessageSquare, Cloud, CheckCircle2, Download, Phone, Users, History, Zap, Clock, Bell, MessageCircle, Instagram, Linkedin, Facebook } from 'lucide-react';
+import { UserCheck, LayoutDashboard, Brain, MessageSquare, Cloud, CheckCircle2, Download, Phone, Users, History, Zap, Clock, Bell, MessageCircle, Instagram, Linkedin, Youtube } from 'lucide-react';
 import '../styles/Home.css';
 import '../styles/Products.css';
+import { useModal } from '../context/ModalContext';
 
 const Products = () => {
+    const { openModal } = useModal();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [billingCycle, setBillingCycle] = useState('annually');
     const [formData, setFormData] = useState({
@@ -88,10 +90,13 @@ const Products = () => {
                     </span>
                 </div>
 
-                <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <div className="nav-right-container">
+                    <button className="header-call-btn" onClick={openModal}><Phone size={18} stroke="url(#orange-grad)" /> <span className="header-call-text">Schedule a Call</span></button>
+                    <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </div>
 
                 <div className={`nav-backdrop ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}></div>
@@ -128,11 +133,11 @@ const Products = () => {
                             <Download size={20} />
                             Download App
                         </button>
-                        <button className="pp-action-btn pp-call-btn">
+                        <button className="pp-action-btn pp-call-btn" onClick={openModal}>
                             <Phone size={20} />
                             Expert Call
                         </button>
-                        <a href="https://wa.me/919342742656" target="_blank" rel="noopener noreferrer" className="pp-action-btn pp-whatsapp-btn" style={{ textDecoration: 'none' }}>
+                        <a href="https://wa.me/919342742656?text=Hi%2C%20can%20i%20get%20more%20info%20about%20your%20services%3F" target="_blank" rel="noopener noreferrer" className="pp-action-btn pp-whatsapp-btn" style={{ textDecoration: 'none' }}>
                             <MessageCircle size={20} />
                             WhatsApp Us
                         </a>
@@ -456,19 +461,19 @@ const Products = () => {
                                     <div className="pp-orange-splash"></div>
                                     
                                     {/* Floating Boxes */}
-                                    <div className="pp-floating-box top-left">
+                                    <div className="pp-floating-box pp-float-attendance-tl">
                                         <Users size={18} className="pp-floating-icon" />
                                         <span>Unlimited user entry</span>
                                     </div>
-                                    <div className="pp-floating-box top-right">
+                                    <div className="pp-floating-box pp-float-attendance-tr">
                                         <History size={18} className="pp-floating-icon" />
                                         <span>Unlimited punch logs</span>
                                     </div>
-                                    <div className="pp-floating-box bottom-left">
+                                    <div className="pp-floating-box pp-float-attendance-bl">
                                         <Zap size={18} className="pp-floating-icon" />
                                         <span>Free device integration</span>
                                     </div>
-                                    <div className="pp-floating-box bottom-right">
+                                    <div className="pp-floating-box pp-float-attendance-br">
                                         <Clock size={18} className="pp-floating-icon" />
                                         <span>24/7 office access</span>
                                     </div>
@@ -502,19 +507,19 @@ const Products = () => {
                                     <div className="pp-orange-splash"></div>
                                     
                                     {/* Floating Boxes */}
-                                    <div className="pp-floating-box top-left">
+                                    <div className="pp-floating-box pp-float-management-tl">
                                         <Users size={18} className="pp-floating-icon" />
                                         <span>Member database</span>
                                     </div>
-                                    <div className="pp-floating-box top-right">
+                                    <div className="pp-floating-box pp-float-management-tr">
                                         <CheckCircle2 size={18} className="pp-floating-icon" />
                                         <span>Digital billing</span>
                                     </div>
-                                    <div className="pp-floating-box bottom-left">
+                                    <div className="pp-floating-box pp-float-management-bl">
                                         <LayoutDashboard size={18} className="pp-floating-icon" />
                                         <span>Staff scheduling</span>
                                     </div>
-                                    <div className="pp-floating-box bottom-right">
+                                    <div className="pp-floating-box pp-float-management-br">
                                         <Clock size={18} className="pp-floating-icon" />
                                         <span>Integrated payments</span>
                                     </div>
@@ -547,19 +552,19 @@ const Products = () => {
                                     <div className="pp-orange-splash"></div>
                                     
                                     {/* Floating Boxes */}
-                                    <div className="pp-floating-box top-left">
+                                    <div className="pp-floating-box pp-float-ai-tl">
                                         <Brain size={18} className="pp-floating-icon" />
                                         <span>Customized workouts</span>
                                     </div>
-                                    <div className="pp-floating-box top-right">
+                                    <div className="pp-floating-box pp-float-ai-tr">
                                         <UserCheck size={18} className="pp-floating-icon" />
                                         <span>Churn prediction</span>
                                     </div>
-                                    <div className="pp-floating-box bottom-left">
+                                    <div className="pp-floating-box pp-float-ai-bl">
                                         <LayoutDashboard size={18} className="pp-floating-icon" />
                                         <span>Business analytics</span>
                                     </div>
-                                    <div className="pp-floating-box bottom-right">
+                                    <div className="pp-floating-box pp-float-ai-br">
                                         <Brain size={18} className="pp-floating-icon" />
                                         <span>CRM insights</span>
                                     </div>
@@ -592,19 +597,19 @@ const Products = () => {
                                     <div className="pp-orange-splash"></div>
                                     
                                     {/* Floating Boxes */}
-                                    <div className="pp-floating-box top-left">
+                                    <div className="pp-floating-box pp-float-automation-tl">
                                         <Bell size={18} className="pp-floating-icon" />
                                         <span>Automated notifications</span>
                                     </div>
-                                    <div className="pp-floating-box top-right">
+                                    <div className="pp-floating-box pp-float-automation-tr">
                                         <MessageSquare size={18} className="pp-floating-icon" />
                                         <span>WhatsApp integration</span>
                                     </div>
-                                    <div className="pp-floating-box bottom-left">
+                                    <div className="pp-floating-box pp-float-automation-bl">
                                         <Zap size={18} className="pp-floating-icon" />
                                         <span>Payment reminders</span>
                                     </div>
-                                    <div className="pp-floating-box bottom-right">
+                                    <div className="pp-floating-box pp-float-automation-br">
                                         <Users size={18} className="pp-floating-icon" />
                                         <span>Member engagement</span>
                                     </div>
@@ -638,19 +643,19 @@ const Products = () => {
                                     <div className="pp-orange-splash"></div>
                                     
                                     {/* Floating Boxes */}
-                                    <div className="pp-floating-box top-left">
+                                    <div className="pp-floating-box pp-float-support-tl">
                                         <Phone size={18} className="pp-floating-icon" />
                                         <span>24/7 dedicated support</span>
                                     </div>
-                                    <div className="pp-floating-box top-right">
+                                    <div className="pp-floating-box pp-float-support-tr">
                                         <Cloud size={18} className="pp-floating-icon" />
                                         <span>Secure data backup</span>
                                     </div>
-                                    <div className="pp-floating-box bottom-left">
+                                    <div className="pp-floating-box pp-float-support-bl">
                                         <Download size={18} className="pp-floating-icon" />
                                         <span>Easy data migration</span>
                                     </div>
-                                    <div className="pp-floating-box bottom-right">
+                                    <div className="pp-floating-box pp-float-support-br">
                                         <Zap size={18} className="pp-floating-icon" />
                                         <span>Regular updates</span>
                                     </div>
@@ -685,7 +690,11 @@ const Products = () => {
                                     </div>
                                     <div>
                                         <p className="contact-label">Email</p>
-                                        <p className="contact-value">escapeloop25@gmail.com</p>
+                                        <p className="contact-value">
+                                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=escapeloop25@gmail.com&body=HI%2C%20Can%20I%20get%20more%20info%20about%20services%3F" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                                                escapeloop25@gmail.com
+                                            </a>
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="contact-item">
@@ -694,7 +703,7 @@ const Products = () => {
                                             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.23h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                                         </svg>
                                     </div>
-                                    <div>
+                                    <div style={{ cursor: 'pointer' }} onClick={openModal}>
                                         <p className="contact-label">Call</p>
                                         <p className="contact-value">+91 93427 42656 | +91 73585 46188</p>
                                     </div>
@@ -707,7 +716,7 @@ const Products = () => {
                                     </div>
                                     <div>
                                         <p className="contact-label">WhatsApp</p>
-                                        <p className="contact-value">+91 93427 42656</p>
+                                        <a href="https://wa.me/919342742656?text=Hi%2C%20can%20i%20get%20more%20info%20about%20your%20services%3F" target="_blank" rel="noopener noreferrer" className="contact-value" style={{ textDecoration: 'none', color: 'inherit' }}>+91 93427 42656</a>
                                     </div>
                                 </div>
                                 <div className="contact-item">
@@ -719,7 +728,9 @@ const Products = () => {
                                     </div>
                                     <div>
                                         <p className="contact-label">Location</p>
-                                        <p className="contact-value">No 5/23 , perumal kovil street, thideer nagar,<br></br> maduravoyal, chennai - 600095, Tamil Nadu, India</p>
+                                        <a href="https://www.google.com/maps/search/?api=1&query=No+5%2F23+,+perumal+kovil+street,+thideer+nagar,+maduravoyal,+chennai+-+600095,+Tamil+Nadu,+India" target="_blank" rel="noopener noreferrer" className="contact-value" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            No 5/23 , perumal kovil street, thideer nagar,<br></br> maduravoyal, chennai - 600095, Tamil Nadu, India
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -777,16 +788,16 @@ const Products = () => {
                     <div className="ct-social-connect">
                         <h3>Follow Our Journey</h3>
                         <div className="ct-social-links">
-                            <a href="https://instagram.com/escapeloop" target="_blank" rel="noopener noreferrer" className="ct-social-btn instagram">
+                            <a href="https://www.instagram.com/escapeloop/" target="_blank" rel="noopener noreferrer" className="ct-social-btn instagram">
                                 <Instagram size={20} />
-                                <span>escapeloop.ai</span>
-                            </a>
-                            <a href="https://linkedin.com/company/escapeloop" target="_blank" rel="noopener noreferrer" className="ct-social-btn linkedin">
-                                <Linkedin size={20} />
                                 <span>escapeloop</span>
                             </a>
-                            <a href="https://facebook.com/escapeloop" target="_blank" rel="noopener noreferrer" className="ct-social-btn facebook">
-                                <Facebook size={20} />
+                            <a href="https://www.youtube.com/@escapeloop" target="_blank" rel="noopener noreferrer" className="ct-social-btn youtube">
+                                <Youtube size={20} />
+                                <span>escapeloop</span>
+                            </a>
+                            <a href="https://www.linkedin.com/company/escapeloop/" target="_blank" rel="noopener noreferrer" className="ct-social-btn linkedin">
+                                <Linkedin size={20} />
                                 <span>escapeloop</span>
                             </a>
                         </div>
