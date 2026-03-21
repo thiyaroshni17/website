@@ -68,7 +68,7 @@ const ContactSection = () => {
                             </div>
                             <div>
                                 <p className="contact-label">Location</p>
-                                <a href="https://www.google.com/maps/search/?api=1&query=No+5%2F23+,+perumal+kovil+street,+thideer+nagar,+maduravoyal,+chennai+-+600095,+Tamil+Nadu,+India" target="_blank" rel="noopener noreferrer" className="contact-value" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                <a href="https://share.google/sDVcEiymecPhbyAwS" target="_blank" rel="noopener noreferrer" className="contact-value" style={{ textDecoration: 'none', color: 'inherit' }}>
                                     No 5/23 , perumal kovil street, thideer nagar,<br></br> maduravoyal, chennai - 600095, Tamil Nadu, India
                                 </a>
                             </div>
@@ -100,17 +100,21 @@ const ContactSection = () => {
             <div className="ct-social-connect">
                 <h3>Follow Our Journey</h3>
                 <div className="ct-social-links">
-                    <a href="https://www.instagram.com/escapeloop/" target="_blank" rel="noopener noreferrer" className="ct-social-btn instagram">
+                    <a href="https://www.facebook.com/profile.php?id=61579488132101" target="_blank" rel="noopener noreferrer" className="ct-social-btn facebook" aria-label="Facebook">
+                        <Facebook size={20} />
+                        <span>Escape Loop</span>
+                    </a>
+                    <a href="https://www.instagram.com/escapeloop_tech_solutions?igsh=MWx2OHpjZHljb3Mzdg==" target="_blank" rel="noopener noreferrer" className="ct-social-btn instagram">
                         <Instagram size={20} />
-                        <span>escapeloop</span>
+                        <span>escapeloop_tech_solutions</span>
                     </a>
-                    <a href="https://www.youtube.com/@escapeloop" target="_blank" rel="noopener noreferrer" className="ct-social-btn youtube">
+                    <a href="https://www.youtube.com/@EscapeloopTechSolutions" target="_blank" rel="noopener noreferrer" className="ct-social-btn youtube">
                         <Youtube size={20} />
-                        <span>escapeloop</span>
+                        <span>Escapeloop Tech Solutions</span>
                     </a>
-                    <a href="https://www.linkedin.com/company/escapeloop/" target="_blank" rel="noopener noreferrer" className="ct-social-btn linkedin">
+                    <a href="https://www.linkedin.com/in/escapeloop-tech-solutions-452a943b8?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" className="ct-social-btn linkedin">
                         <Linkedin size={20} />
-                        <span>escapeloop</span>
+                        <span>Escapeloop Tech Solutions</span>
                     </a>
                 </div>
             </div>

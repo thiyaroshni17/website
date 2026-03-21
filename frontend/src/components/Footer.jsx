@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Instagram, Linkedin, MapPin, Mail, Phone, MessageCircle, Youtube } from 'lucide-react';
+import { Instagram, Linkedin, MapPin, Mail, Phone, MessageCircle, Youtube, Facebook } from 'lucide-react';
 import '../styles/Footer.css';
 import { useModal } from '../context/ModalContext';
 
@@ -13,25 +13,28 @@ const Footer = () => {
                 <div className="ft-content">
                     {/* Branding */}
                     <div className="ft-brand-section">
-                        <Link to="/" className="ft-logo">
-                            <span className="ft-logo-esc">esc</span>
-                            <span className="ft-logo-apeloop">apeloop</span>
-                        </Link>
+                        <div className="ft-logo-container">
+                            <Link to="/" className="ft-logo">
+                                <span className="ft-logo-esc">esc</span>
+                                <span className="ft-logo-apeloop">apeloop</span>
+                            </Link>
+                            <span className="ft-logo-tagline">TECH SOLUTIONS</span>
+                        </div>
                         <p className="ft-brand-desc">
                             Automate your business and escape the loop with our innovative software solutions and expert IT consulting.
                         </p>
                         <div className="ft-social-links">
-                            <a href="https://www.instagram.com/escapeloop/" target="_blank" rel="noopener noreferrer" className="ft-social-btn instagram" aria-label="Instagram">
+                            <a href="https://www.facebook.com/profile.php?id=61579488132101" target="_blank" rel="noopener noreferrer" className="ft-social-btn facebook" aria-label="Facebook">
+                                <Facebook size={20} />
+                            </a>
+                            <a href="https://www.instagram.com/escapeloop_tech_solutions?igsh=MWx2OHpjZHljb3Mzdg==" target="_blank" rel="noopener noreferrer" className="ft-social-btn instagram" aria-label="Instagram">
                                 <Instagram size={20} />
-                                <span>escapeloop</span>
                             </a>
-                            <a href="https://www.youtube.com/@escapeloop" target="_blank" rel="noopener noreferrer" className="ft-social-btn youtube" aria-label="YouTube">
+                            <a href="https://www.youtube.com/@EscapeloopTechSolutions" target="_blank" rel="noopener noreferrer" className="ft-social-btn youtube" aria-label="YouTube">
                                 <Youtube size={20} />
-                                <span>escapeloop</span>
                             </a>
-                            <a href="https://www.linkedin.com/company/escapeloop/" target="_blank" rel="noopener noreferrer" className="ft-social-btn linkedin" aria-label="LinkedIn">
+                            <a href="https://www.linkedin.com/in/escapeloop-tech-solutions-452a943b8?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" className="ft-social-btn linkedin" aria-label="LinkedIn">
                                 <Linkedin size={20} />
-                                <span>escapeloop</span>
                             </a>
                         </div>
                     </div>
@@ -77,7 +80,7 @@ const Footer = () => {
                             </li>
                             <li>
                                 <MapPin size={16} className="ft-icon min-w" />
-                                <a href="https://www.google.com/maps/search/?api=1&query=No+5%2F23+,+perumal+kovil+street,+thideer+nagar,+maduravoyal,+chennai+-+600095,+Tamil+Nadu,+India" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                                <a href="https://share.google/sDVcEiymecPhbyAwS" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
                                     No 5/23 , perumal kovil street, thideer nagar, maduravoyal, chennai - 600095, Tamil Nadu, India
                                 </a>
                             </li>

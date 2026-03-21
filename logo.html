@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escapeloop Logo</title>
+    <!-- Importing Poppins font to match the Services page -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            /* White background as requested */
+            background-color: #ffffff; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Contains the logo image and the text block side-by-side */
+        .logo-vertical-container {
+            display: flex;
+            flex-direction: row; /* Placed side-by-side */
+            align-items: center; 
+            text-align: left;
+            gap: 25px; /* Spacing between the logo image and the text block */
+        }
+
+        .logo-img {
+            height: 150px; /* Significantly larger size */
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Container for the text portion */
+        .logo-text-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align text to the left perfectly under each other */
+        }
+
+        .logo-name {
+            font-size: 64px; /* Doubled text size */
+            font-weight: 400;
+            line-height: 1;
+            margin-bottom: 12px; /* Increased spacing between company name and tagline */
+        }
+
+        /* The exact gradient you set for the orange 'esc' text */
+        .logo-highlight {
+            background: linear-gradient(90deg, #f39233, #853f16);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* The dark gradient for 'apeloop' so it's visible on white */
+        .logo-secondary {
+            background: linear-gradient(to top, #000000 20%, #999999 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* The small styling for TECH SOLUTIONS, darker grey for contrast against white */
+        .logo-tagline {
+            font-size: 1.5rem; /* Increased size */
+            font-weight: 500;
+            color: #666666;
+            letter-spacing: 6px; /* Scaled wide spacing */
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logo-vertical-container">
+        <!-- Logo Image -->
+        <!-- Note: Update the src path if testing from a different directory -->
+        <img src="frontend/public/logo.png" alt="Escapeloop Logo" class="logo-img" onerror="this.style.display='none'"/>
+        
+        <!-- Company Text Below -->
+        <div class="logo-text-container">
+            <div class="logo-name">
+                <span class="logo-highlight">esc</span><span class="logo-secondary">apeloop</span>
+            </div>
+            <div class="logo-tagline">TECH SOLUTIONS</div>
+        </div>
+    </div>
+
+</body>
+</html>

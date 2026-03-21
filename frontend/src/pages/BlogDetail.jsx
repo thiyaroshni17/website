@@ -96,10 +96,13 @@ const BlogDetail = () => {
             <nav className="navbar on-white">
                 <div className="logo">
                     <img src="/logo.png" alt="Escapeloop Logo" className="logo-img" />
-                    <span className="logo-name">
-                        <span className="logo-highlight">esc</span>
-                        <span className="logo-secondary">apeloop</span>
-                    </span>
+                    <div className="logo-text-wrapper">
+                        <span className="logo-name">
+                            <span className="logo-highlight">esc</span>
+                            <span className="logo-secondary">apeloop</span>
+                        </span>
+                        <span className="logo-tagline">TECH SOLUTIONS</span>
+                    </div>
                 </div>
                 <div className="nav-right-container">
                     <button className="header-call-btn" onClick={openModal}><Phone size={18} stroke="url(#orange-grad)" /> <span className="header-call-text">Schedule a Call</span></button>

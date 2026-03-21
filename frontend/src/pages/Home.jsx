@@ -183,10 +183,13 @@ const Home = () => {
                 <nav className={`navbar ${isWhiteSection ? 'on-white' : ''}`}>
                     <div className="logo">
                         <img src="/logo.png" alt="Escapeloop Logo" className="logo-img" />
+                        <div className="logo-text-wrapper">
                         <span className="logo-name">
                             <span className="logo-highlight">esc</span>
                             <span className="logo-secondary">apeloop</span>
                         </span>
+                        <span className="logo-tagline">TECH SOLUTIONS</span>
+                    </div>
                     </div>
 
                     <div className="nav-right-container">

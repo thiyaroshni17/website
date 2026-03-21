@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
-import { Mail, Phone, MapPin, MessageCircle, Send, Instagram, Linkedin, Youtube, ChevronRight } from 'lucide-react';
+import { Mail, Phone, MapPin, MessageCircle, Send, Instagram, Linkedin, Youtube, ChevronRight, Facebook } from 'lucide-react';
 import '../styles/Contact.css';
 import { useModal } from '../context/ModalContext';
 
@@ -53,10 +53,13 @@ const Contact = () => {
                 <nav className="navbar on-white">
                     <div className="logo">
                         <img src="/logo.png" alt="Escapeloop Logo" className="logo-img" />
+                        <div className="logo-text-wrapper">
                         <span className="logo-name">
                             <span className="logo-highlight">esc</span>
                             <span className="logo-secondary">apeloop</span>
                         </span>
+                        <span className="logo-tagline">TECH SOLUTIONS</span>
+                    </div>
                     </div>
 
                     <div className="nav-right-container">
@@ -154,13 +157,13 @@ const Contact = () => {
                                         </div>
                                     </div>
 
-                                    <div className="ct-info-card ct-fade-up delay-3" onClick={() => window.open('https://www.google.com/maps/search/?api=1&query=No+5%2F23+,+perumal+kovil+street,+thideer+nagar,+maduravoyal,+chennai+-+600095,+Tamil+Nadu,+India', '_blank')} style={{ cursor: 'pointer' }}>
+                                    <div className="ct-info-card ct-fade-up delay-3" onClick={() => window.open('https://share.google/sDVcEiymecPhbyAwS', '_blank')} style={{ cursor: 'pointer' }}>
                                         <div className="ct-icon-box">
                                             <MapPin className="ct-icon" />
                                         </div>
                                         <div className="ct-info-details">
                                             <h3>Location</h3>
-                                            <a href="https://www.google.com/maps/search/?api=1&query=No+5%2F23+,+perumal+kovil+street,+thideer+nagar,+maduravoyal,+chennai+-+600095,+Tamil+Nadu,+India" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                                            <a href="https://share.google/sDVcEiymecPhbyAwS" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
                                                 No 5/23 , perumal kovil street, thideer nagar,<br></br> maduravoyal, chennai - 600095, Tamil Nadu, India
                                             </a>
                                         </div>
@@ -223,17 +226,21 @@ const Contact = () => {
                         <div className="ct-social-connect">
                             <h3>Follow Our Journey</h3>
                             <div className="ct-social-links">
-                                <a href="https://www.instagram.com/escapeloop/" target="_blank" rel="noopener noreferrer" className="ct-social-btn instagram">
+                                <a href="https://www.facebook.com/profile.php?id=61579488132101" target="_blank" rel="noopener noreferrer" className="ct-social-btn facebook" aria-label="Facebook">
+                                    <Facebook size={20} />
+                                    <span>Escape Loop</span>
+                                </a>
+                                <a href="https://www.instagram.com/escapeloop_tech_solutions?igsh=MWx2OHpjZHljb3Mzdg==" target="_blank" rel="noopener noreferrer" className="ct-social-btn instagram">
                                     <Instagram size={20} />
-                                    <span>escapeloop</span>
+                                    <span>escapeloop_tech_solutions</span>
                                 </a>
-                                <a href="https://www.youtube.com/@escapeloop" target="_blank" rel="noopener noreferrer" className="ct-social-btn youtube">
+                                <a href="https://www.youtube.com/@EscapeloopTechSolutions" target="_blank" rel="noopener noreferrer" className="ct-social-btn youtube">
                                     <Youtube size={20} />
-                                    <span>escapeloop</span>
+                                    <span>Escapeloop Tech Solutions</span>
                                 </a>
-                                <a href="https://www.linkedin.com/company/escapeloop/" target="_blank" rel="noopener noreferrer" className="ct-social-btn linkedin">
+                                <a href="https://www.linkedin.com/in/escapeloop-tech-solutions-452a943b8?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" className="ct-social-btn linkedin">
                                     <Linkedin size={20} />
-                                    <span>escapeloop</span>
+                                    <span>Escapeloop Tech Solutions</span>
                                 </a>
                             </div>
                         </div>
